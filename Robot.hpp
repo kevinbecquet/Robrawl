@@ -1,10 +1,8 @@
 #ifndef ROBOT
 #define ROBOT 
 
-#include <iostream>
 #include "Point.hpp"
 
-using namespace std
 
 class Robot
 {
