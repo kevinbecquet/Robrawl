@@ -17,3 +17,5 @@ class Point{
 		getX(){ return X;}
 		getY(){ return Y;}
 };
+
+#endif
