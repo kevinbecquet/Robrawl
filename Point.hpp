@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-using namespace std
+using namespace std;
 
 //Une classe qui donne les coordonnées d'un point
 class Point{
@@ -14,8 +14,8 @@ class Point{
 	
 	public :
 		Point(int x, int y) : X(x), Y(y){};
-		getX(){ return X;}
-		getY(){ return Y;}
+		int getX(){ return X;}
+		int getY(){ return Y;}
 };
 
 #endif

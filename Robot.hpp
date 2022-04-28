@@ -2,6 +2,7 @@
 #define ROBOT 
 
 #include "Point.hpp"
+#include <SFML/Graphics.hpp>
 
 
 class Robot
@@ -11,7 +12,7 @@ class Robot
 		Point position;
 		float orientation;
 		int vie;
-		sf::image im;
+		sf::Image im;
 	
 	public :
 	
@@ -20,7 +21,8 @@ class Robot
 		float getOrientation(){return orientation;}
 		int getVie(){return vie;}
 		//les setters
-		void setPosition(Point pos) : position(pos){};
+		//A mettre en place l'opérateur =, le constructeur par copie et maybe un destructeur
+		//void setPosition(Point pos){};
 		void setOrientation(float angle);
 		
 		//déplace le robot suivant X et Y
