@@ -11,6 +11,7 @@ class Terrain
 		vector<Obstacle> Obs;
 		vector <Joueur> J;
 		RenderWindow fenetre;
+		//fenetre.setVerticalSynEnabled(true);
 		
 	
 	public :
@@ -30,7 +31,16 @@ class Terrain
 		}
 		//Ce qu'un jeu en cours 
 		bool jeuEnCours(){ return fenetre.isOpen();}
-		//RenderWindow getFenetre(){ return fenetre;}
+		//Ecrire dans une fenetre
+		//L'élement à dessiner est à modifier par une plus grande classe qui inclue toute les autres
+		void ajoutElemFenetre(Color defaultColor, Text elemTodraw)
+		{
+			fenetre.clear(defaultColor);
+			
+			fenetre.draw(elemTodraw);
+			
+			fenetre.display();
+		}
 		//void pause(Keyboard::key p);
 		void ajout(Obstacle o);
 		void ajout(Joueur j);
