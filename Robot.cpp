@@ -4,10 +4,10 @@ void Robot::deplace()
 {
 
 
-	int x = VITESSE * floor(cos(orientation))+
-					position.getX();
-	int y = VITESSE * floor(sin(orientation)) +
-					position.getY();
+	int x = floor(VITESSE * cos(orientation)+
+					position.getX());
+	int y = floor(VITESSE * sin(orientation) +
+					position.getY());
 
 	position = Point(x,y);
 }
@@ -22,7 +22,7 @@ int main(){
 	RenderWindow app;
 	app.create(sf::VideoMode(800, 600, 32), "Ma premiere fenetre SFML ! ");
 
-	Point p = Point(50,50);
+	Point p = Point(400,300);
 	Robot rob = Robot("nom", p, 0, 100);
 
 	while(app.isOpen()){
@@ -30,7 +30,7 @@ int main(){
 		Event event;
 		while(app.pollEvent(event)){
 			if(event.type == Event::Closed) app.close();
-			printf("event X : %d | Y : %d\n",50,50);
+
 
 			if(Keyboard::isKeyPressed(Keyboard::Left)) rob.reoriente(-1);
 			if(Keyboard::isKeyPressed(Keyboard::Right)) rob.reoriente(1);
@@ -38,7 +38,8 @@ int main(){
 		rob.deplace();
 		int x = rob.getPosition().getX();
 		int y = rob.getPosition().getY();
-		printf("X : %d | Y : %d\n",x,y);
+
+		printf("orient : %f\n",rob.getOrientation() );
 
 		app.clear(Color::Black);
 
@@ -51,10 +52,6 @@ int main(){
 
 		app.display();
 }
-
-
-
-
 
 		return 0;
 	}
