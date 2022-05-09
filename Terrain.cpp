@@ -1,29 +1,39 @@
 #include "Terrain.hpp"
 
+#include <SFML/Graphics.hpp>
+using namespace sf;
+using namespace std;
+
+
+
+
 //fonction qui charge la police d'écriture
-//Est-ce qu'il ne faudrait pas créer une classe qui s'occupe de la gestion de fenetre? 
+//Est-ce qu'il ne faudrait pas créer une classe qui s'occupe de la gestion de fenetre?
 Font loadFont()
 {
 	Font font;
 	if(!font.loadFromFile("Font/Tapestry-Regular.ttf"))
-		throw runtime_error("Font file opening unsuccessful\n"); 
+		throw runtime_error("Font file opening unsuccessful\n");
 	else
 		return font;
 }
 
-void writetxt(Text txt, string text, size_t size /*Color color,*/)
+Text* writetxt( string text, size_t size, Color color)
 {
+	Text* txt = new Text;
 	//charge la police d'écrire
-	txt.setFont(loadFont());
+	txt->setFont(loadFont());
 	//Configure le texte pour l'afficher comme souhaité
-	txt.setString(text); //texte à écrire
-	
-	txt.setCharacterSize(size); //taille du texte
-	
-	//txt.setFillColor(color); //Couleur du texte
-	
+	txt->setString(text); //texte à écrire
+
+	txt->setCharacterSize(size); //taille du texte
+
+	txt->setFillColor(color); //Couleur du texte
+
+	return txt;
 }
 
+/*
 int main()
 {
 	//Je test l'ouverture d'une fenetre avec sfml
@@ -31,19 +41,26 @@ int main()
 	//Evenement à gérer
 	Event e;
 	//text à écrire
-	Text txt;
+	Text txt = writetxt("Hello world", 36, Color::Yellow);
+	std::cout<<"ok"<<std::endl;
 	Text txt2;
-	
-	writetxt(txt,"Hello world",36/*Color::Yellow,*/);
-	writetxt(txt2,"Today is the day!",20/*,Color::Purple,*/);
-	
+
+	//writetxt(txt,"Hello world", 36, Color::Yellow);
+	//writetxt(txt2,"Today is the day!",20/*,Color::Purple,);
+
 	while(t.jeuEnCours())
 	{
 		t.endOfGame(e);
-		
+
+
+		t.getFenetre().clear(Color::Black);
+		t.getFenetre().draw(txt);
+		t.getFenetre().display();
+
 		//t.ajoutElemFenetre(Color::Green,txt);
-		t.ajoutElemFenetre(Color::Black,txt2);
+		//t.ajoutElemFenetre(Color::Black,txt2);
 	}
-	
+
 	return 0;
 }
+*/

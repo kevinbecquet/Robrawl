@@ -13,12 +13,12 @@ class Obstacle
 		Point position;
 		Image image;
 		//forme
-	
+
 	public :
 		Obstacle(Point pos, /*frm,*/ sf::Image im) : position(pos), /*forme(frm),*/ image(im){};
 		Point getPosition(){ return position;}
 		//void getForme(){ return forme;}
 		void affiche();
 };
-		
-#endif 
+
+#endif
