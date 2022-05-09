@@ -1,14 +1,17 @@
 #include "Terrain.hpp"
 
+
 //fonction qui charge la police d'écriture
 //Est-ce qu'il ne faudrait pas créer une classe qui s'occupe de la gestion de fenetre? 
 Font loadFont()
 {
 	Font font;
 	if(!font.loadFromFile("Font/Tapestry-Regular.ttf"))
-		throw runtime_error("Font file opening unsuccessful\n"); 
+	{	cout << "Not working" << endl;}
+		/*throw runtime_error("Font file opening unsuccessful\n"); 
 	else
-		return font;
+		return font;*/
+	return font;
 }
 
 void writetxt(Text txt, string text, size_t size /*Color color,*/)

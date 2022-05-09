@@ -1,41 +1,44 @@
 #ifndef ROBOT
-#define ROBOT 
+#define ROBOT
 
 #include "Point.hpp"
-#include <SFML/Graphics.hpp>
+#include <cmath>
 
+#include <cstdlib>
+#include <fstream>
+
+#include <SFML/Graphics.hpp>
+using namespace sf;
+
+#define VITESSE 1
+#define VITESSE_ROTATION 0.1
 
 class Robot
 {
-	protected :
+	private :
 		string nom;
 		Point position;
 		float orientation;
 		int vie;
-		sf::Image im;
-	
+		Image im;
+
 	public :
-	
+
+		Robot(String n, Point p, float o, int v ) : nom(n), position(p), orientation(o), vie(v){};
 		//les getters
 		Point getPosition(){ return position;}
 		float getOrientation(){return orientation;}
 		int getVie(){return vie;}
-		//les setters
-		//A mettre en place l'opérateur =, le constructeur par copie et maybe un destructeur
-		//void setPosition(Point pos){};
-		void setOrientation(float angle);
-		
+
+
 		//déplace le robot suivant X et Y
 		void deplace();
 		//Reoriente le robot en affichant une fleche qui tourne sur 180° à droite ou à gauche
-		void reoriente(sf::Keyboard::Key gauche, sf::Keyboard::Key droit);
+		void reoriente(int direction);
 		//chaque robot à son attaque
-		virtual void attaque() = 0;
-		//afficher
-		void affiche();
+		//virtual void attaque() = 0;
+		
 };
-	
-	
 
 
-#endif 
+#endif

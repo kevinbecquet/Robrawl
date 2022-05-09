@@ -3,7 +3,7 @@
 
 #include "Robot.hpp"
 
-class Joueur
+class Joueur : public Element
 {
 	string nom;
 	//Keyboard::Key[3] touches;
@@ -12,6 +12,7 @@ class Joueur
 	Joueur(string n/*, Keyboard::key[3] keys Robot r*/);
 	void setTouche(/*Keyboard tou*/);
 	void action();
+	void displayInWindow(SFMLManager& s);
 };
 
 #endif

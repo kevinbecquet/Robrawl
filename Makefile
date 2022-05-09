@@ -6,14 +6,11 @@ CPPFLAGS=-std=c++14
 $(Exec) : Point.o Robot.o Obstacle.o Terrain.o Joueur.o
 	$(CPP) -o Robrawl Point.o Robot.o Terrain.o Obstacle.o Joueur.o $(LibSfml)
 
-Point.o : Point.hpp Point.cpp
-	$(CPP) $(CPPFLAGS) -Wall -c Point.cpp 
-	
-Robot.o : Robot.cpp Robot.hpp	
+Robot.o : Robot.cpp Robot.hpp Point.hpp
 	$(CPP) $(CPPFLAGS) -Wall -c Robot.cpp 
 
 
-Obstacle.o : Obstacle.cpp Obstacle.hpp
+Obstacle.o : Obstacle.cpp Obstacle.hpp Point.hpp
 	$(CPP) $(CPPFLAGS) -Wall -c Obstacle.cpp
 
 Terrain.o : Terrain.cpp Terrain.hpp
