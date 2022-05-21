@@ -4,7 +4,7 @@ void Robot::deplace()
 {
 
 
-	int x = floor(VITESSE * cos(orientation)+
+	int x = floor(VITESSE * cos(orientation) +
 					position.getX());
 	int y = floor(VITESSE * sin(orientation) +
 					position.getY());
@@ -32,14 +32,15 @@ int main(){
 			if(event.type == Event::Closed) app.close();
 
 
-			if(Keyboard::isKeyPressed(Keyboard::Left)) rob.reoriente(-1);
-			if(Keyboard::isKeyPressed(Keyboard::Right)) rob.reoriente(1);
+			if(Keyboard::isKeyPressed(Keyboard::Left)) rob.reoriente(1);
+			if(Keyboard::isKeyPressed(Keyboard::Right)) rob.reoriente(-1);
+			printf("reor\n" );
 		}
 		rob.deplace();
 		int x = rob.getPosition().getX();
 		int y = rob.getPosition().getY();
 
-		printf("orient : %f\n",rob.getOrientation() );
+		printf("X : %d | Y : %d |orient : %f\n",x,y,rob.getOrientation());
 
 		app.clear(Color::Black);
 

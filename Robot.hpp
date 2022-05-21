@@ -11,7 +11,7 @@
 using namespace sf;
 
 #define VITESSE 1
-#define VITESSE_ROTATION 0.1
+#define VITESSE_ROTATION 20
 
 class Robot
 {
