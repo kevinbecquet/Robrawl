@@ -18,7 +18,7 @@ Font loadFont()
 		return font;
 }
 
-Text* writetxt( string text, size_t size, Color color)
+Text writetxt( string text, size_t size, Color color)
 {
 	Text* txt = new Text;
 	//charge la police d'écrire
@@ -30,8 +30,55 @@ Text* writetxt( string text, size_t size, Color color)
 
 	txt->setFillColor(color); //Couleur du texte
 
-	return txt;
+	return *txt;
 }
+
+
+
+
+int main(){
+
+
+	RenderWindow app;
+	app.create(sf::VideoMode(800, 600, 32), "Ma premiere fenetre SFML ! ");
+
+	Point p = Point(400,300);
+	Robot rob = Robot("nom", p, 1, 100);
+	while(app.isOpen()){
+
+		Event event;
+		while(app.pollEvent(event)){
+			if(event.type == Event::Closed) app.close();
+
+			if(Keyboard::isKeyPressed(Keyboard::Escape)){
+				printf("The game has been stopped by the user\n");
+				return 0;
+			}
+			if(Keyboard::isKeyPressed(Keyboard::A)) rob.reoriente(1);
+			if(Keyboard::isKeyPressed(Keyboard::Z)) rob.reoriente(-1);
+
+		}
+		rob.deplace();
+		double x = rob.getPosition().getX();
+		double y = rob.getPosition().getY();
+
+
+		Text txt = writetxt("Hello world", 36, Color::Yellow);
+
+		app.clear(Color::Black);
+
+
+		CircleShape circle(8); // Create circle
+    circle.setPosition(floor(x - 13), floor(y - 13)); //  We must convert the center position to the top left point position
+		circle.setFillColor(Color::Red);
+
+    app.draw(circle);
+		//app.draw(txt);
+		app.display();
+}
+
+		return 0;
+	}
 
 /*
 int main()

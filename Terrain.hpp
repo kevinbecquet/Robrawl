@@ -2,6 +2,7 @@
 #define TERRAIN
 
 #include "Joueur.hpp"
+#include "Robot.hpp"
 #include "Obstacle.hpp"
 
 

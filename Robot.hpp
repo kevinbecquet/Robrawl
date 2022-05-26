@@ -10,8 +10,8 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-#define VITESSE 1
-#define VITESSE_ROTATION 20
+#define VITESSE 0.75
+#define VITESSE_ROTATION M_PI/60
 
 class Robot
 {
