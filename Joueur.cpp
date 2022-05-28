@@ -1,6 +1,6 @@
 #include "Joueur.hpp"
 
-void Joueur::displayInWindow(SFMLManager& s)
+void Joueur::displayInWindow(SFMLManager& s) const
 {
 	s.displayJoueur(*this);
 }
