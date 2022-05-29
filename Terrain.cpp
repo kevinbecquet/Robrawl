@@ -38,12 +38,12 @@ Text writetxt( string text, size_t size, Color color)
 
 int main(){
 
+	Robot rob = Robot("nom", Point(400,300), 1, 100);
+	Terrain* t = new Terrain(800,600,"Fenetre SFML");
 
 	RenderWindow app;
-	app.create(sf::VideoMode(800, 600, 32), "Ma premiere fenetre SFML ! ");
+	app.create(sf::VideoMode(t->getLon(), t->getLarg(), 32), "Ma premiere fenetre SFML ! ");
 
-	Point p = Point(400,300);
-	Robot rob = Robot("nom", p, 1, 100);
 	while(app.isOpen()){
 
 		Event event;
@@ -54,19 +54,17 @@ int main(){
 				printf("The game has been stopped by the user\n");
 				return 0;
 			}
-			if(Keyboard::isKeyPressed(Keyboard::A)) rob.reoriente(1);
-			if(Keyboard::isKeyPressed(Keyboard::Z)) rob.reoriente(-1);
+			if(Keyboard::isKeyPressed(Keyboard::D)) rob.reoriente(1);
+			if(Keyboard::isKeyPressed(Keyboard::Q)) rob.reoriente(-1);
 
 		}
 		rob.deplace();
 		double x = rob.getPosition().getX();
 		double y = rob.getPosition().getY();
 
-
 		Text txt = writetxt("Hello world", 36, Color::Yellow);
 
 		app.clear(Color::Black);
-
 
 		CircleShape circle(8); // Create circle
     circle.setPosition(floor(x - 13), floor(y - 13)); //  We must convert the center position to the top left point position
@@ -75,10 +73,10 @@ int main(){
     app.draw(circle);
 		//app.draw(txt);
 		app.display();
-}
+	}
 
 		return 0;
-	}
+}
 
 /*
 int main()
