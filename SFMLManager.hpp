@@ -1,8 +1,13 @@
 #ifndef SFML
 #define SFML
 
-#include <iostream>
+
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+class Obstacle;
+class Joueur;
+class Robot;
 
 using namespace std;
 using namespace sf;
@@ -15,11 +20,9 @@ class SFMLManager{
 		SFMLManager();
 		~SFMLManager();
 		RenderWindow& getWindow();
-		void closeWindow();
-		void drawInwindow();
+		void eventManager();
 		//gestionCollision();
-		//GestionClavier();
-		void diplayObstacle(const Obstacle& o);
+		void displayObstacle(const Obstacle& o);
 		void displayJoueur(const Joueur& j);
 		//void displayText(const Text& t);
 };

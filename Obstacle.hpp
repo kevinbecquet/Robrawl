@@ -1,23 +1,24 @@
 #ifndef OBSTACLE
 #define OBSTACLE
 
-#include "Point.hpp"
-#include <SFML/Graphics.hpp>
 
+#include <time.h>
+#include "Element.hpp"
 
 using namespace sf;
 
-class Obstacle
+
+class Obstacle : public Element
 {
 	private :
-		Point position;
-		Image image;
-		//forme
+		Sprite image;
+		Vector2f position;
 	
 	public :
-		Obstacle(Point pos, /*frm,*/ sf::Image im) : position(pos), /*forme(frm),*/ image(im){};
-		Point getPosition(){ return position;}
-		//void getForme(){ return forme;}
+		Obstacle();
+		Vector2f getPosition(){ return position;}
+		Sprite getImage(){return image;}
+		void setImage(Texture t){ image.setTexture(t);}
 		void displayInWindow(SFMLManager& s) const;
 };
 		

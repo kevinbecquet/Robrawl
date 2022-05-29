@@ -2,16 +2,20 @@
 #define JOUEUR
 
 #include "Robot.hpp"
+#include "Element.hpp"
 
 class Joueur : public Element
 {
 	string nom;
-	//Keyboard::Key[3] touches;
-	//Robot bot;
+	Robot bot;
 
-	Joueur(string n/*, Keyboard::key[3] keys Robot r*/);
-	void setTouche(/*Keyboard tou*/);
-	void action();
+	Joueur(string n, Robot r)
+	{
+		nom = n;
+		bot = r; //marche grâce à l'opérateur d'assignement
+	}	
+	//En relation avec les touches
+	void action(const SFMLManager& r);
 	void displayInWindow(SFMLManager& s) const;
 };
 
