@@ -9,6 +9,7 @@ void Terrain::ajout(Element* e)
 //Les afficher dans le terrain 
 void Terrain::displayInWindow(SFMLManager& render)
 {
+<<<<<<< HEAD
 	for(size_t i = 0; i < elem.size(); i++)
 		elem[i]->displayInWindow(render);
 	

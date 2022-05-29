@@ -7,6 +7,7 @@ class Obstacle;
 
 class Terrain
 {
+
 	private :
 		vector<Element*> elem;
 	
@@ -18,7 +19,6 @@ class Terrain
 		void ajout(Element* e);
 		void displayInWindow(SFMLManager& render);
 		
-
 };
 
 #endif 
