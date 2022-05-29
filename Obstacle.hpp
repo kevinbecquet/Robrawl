@@ -19,7 +19,7 @@ class Obstacle : public Element
 		Vector2f getPosition(){ return position;}
 		Sprite getImage(){return image;}
 		void setImage(Texture t){ image.setTexture(t);}
-		void displayInWindow(SFMLManager& s) const;
+		void displayInWindow(SFMLManager& s);
 };
 		
 #endif 

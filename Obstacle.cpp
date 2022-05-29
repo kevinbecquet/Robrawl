@@ -8,7 +8,7 @@ Obstacle::Obstacle()
 	position.y = rand()%600;
 }
 
-void Obstacle::displayInWindow(SFMLManager& s) const
+void Obstacle::displayInWindow(SFMLManager& s) 
 {
 	s.displayObstacle(*this);
 }

@@ -7,7 +7,6 @@
 SFMLManager::SFMLManager()
 {
 	window = new RenderWindow(VideoMode(800,600),"Robrawl");
-	window->setVerticalSynEnabled(true) //frame rate
 	window->clear(Color::Black);
 }
  
@@ -18,7 +17,7 @@ SFMLManager::~SFMLManager()
 }
 
 //Renvoie de l'attribut fenêtre en pointeur
-RenderWindow& SFMLManager::getWindow()
+RenderWindow*& SFMLManager::getWindow()
 {
 	return window;
 }
@@ -35,21 +34,21 @@ void SFMLManager::eventManager()
 	
 	cout << "Fermez la fenêtre pour finir le jeu" << endl; 
 	
-	while(window->IsOpen())
+	while(window->isOpen())
 	{
 		Event e;
 		while(window->pollEvent(e))
 		{
-			if(event.type == Event::Closed)
+			if(e.type == Event::Closed)
 				window->close();
 			
-			/*if(event.type == Event::KeyPressed)
+			/*if(e.type == Event::KeyPressed)
 			{
 				if(event.key.code == Keyboard::q || event.key.code == Keyboard::j)
 					rob.reoriente(-1);
 				else if(event.key.code == Keyboard::d || event.key.code == Keyboard::l)
 					rob.reoriente(1);
-			/*	else if(event.key.code == Keyboard::s || event.key.code == Keyboard::k)
+				else if(event.key.code == Keyboard::s || event.key.code == Keyboard::k)
 					rob.attaque();*/
 			//}
 				
@@ -58,26 +57,27 @@ void SFMLManager::eventManager()
 }
 
 //Afficher un obstacle ou un joueur 
-void SFMLManager::displayObstacle(const Obstacle& o)
+void SFMLManager::displayObstacle(Obstacle& o)
 {
 	//Image = texture
 	Texture texture;
-	if(!(texture.loadFromFile("Image/obstacle_test.jpeg"))
+	if(!(texture.loadFromFile("Image/obstacle_test.jpeg")))
 	{
 		cout << "Fail to load obstacle image/texture" << endl;
-		exit 0;
+		exit(0);
 	}
 	o.setImage(texture); //Position (0,0), taille de l'image
 	o.getImage().setPosition(o.getPosition());
 	
-	this->getWindow().draw(o.getImage());
+	this->getWindow()->draw(o.getImage());
 }
 
+/*
 void SFMLManager::displayJoueur(const Joueur& j)
 {
 	window->draw(j);
 }
-
+*/
 /*
 void SFMLManager::displayText(const Text& t)
 {

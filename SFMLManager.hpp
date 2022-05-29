@@ -19,11 +19,11 @@ class SFMLManager{
 	public :
 		SFMLManager();
 		~SFMLManager();
-		RenderWindow& getWindow();
+		RenderWindow*& getWindow();
 		void eventManager();
 		//gestionCollision();
-		void displayObstacle(const Obstacle& o);
-		void displayJoueur(const Joueur& j);
+		void displayObstacle(Obstacle& o);
+		//void displayJoueur(const Joueur& j);
 		//void displayText(const Text& t);
 };
 

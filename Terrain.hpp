@@ -3,8 +3,6 @@
 
 #include "Element.hpp"
 
-class Obstacle;
-
 class Terrain
 {
 
