@@ -10,11 +10,11 @@ void Terrain::ajout(Element* e)
 //Les afficher dans le terrain 
 void Terrain::displayInWindow(SFMLManager& render)
 {
-
-	render.eventManager();
 	
 	for(size_t i = 0; i < elem.size(); i++)
 		elem[i]->displayInWindow(render);
+		
+	render.eventManager();
 	
 }
 	
@@ -29,6 +29,8 @@ int main()
 	//Joueur J1("Gabriel",r1);
 	
 	map.ajout(o1);
+	
+	cout << o1->getPosition().x <<" "<< o1->getPosition().y << endl;
 	
 	map.displayInWindow(f);
 
