@@ -69,7 +69,7 @@ void SFMLManager::displayObstacle(Obstacle& o)
 	o.setImage(texture); //Position (0,0), taille de l'image
 	o.getImage().setPosition(o.getPosition());
 	
-	this->getWindow()->draw(o.getImage());
+	window->draw(o.getImage());
 }
 
 /*

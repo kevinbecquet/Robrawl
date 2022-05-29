@@ -9,7 +9,7 @@ using namespace sf;
 class Element{
 	
 	public :
-		virtual void displayInWindow(SFMLManager& s) const = 0;
+		virtual void displayInWindow(SFMLManager& s) = 0;
 
 };
 
