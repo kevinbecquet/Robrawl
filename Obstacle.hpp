@@ -11,15 +11,13 @@ using namespace sf;
 class Obstacle : public Element
 {
 	private :
-		Sprite image;
-		Vector2f position;
+		Sprite sprite;
 	
 	public :
-		Obstacle();
-		Vector2f getPosition(){ return position;}
-		Sprite getImage(){return image;}
-		void setImage(Texture t){ image.setTexture(t);}
+		Obstacle(Texture* t, Vector2f pos);
+		Sprite getSprite(){ return sprite; }
 		void displayInWindow(SFMLManager& s);
+		
 };
 		
 #endif 

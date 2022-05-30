@@ -1,12 +1,12 @@
 #include "SFMLManager.hpp"
 #include "Obstacle.hpp"
-#include "Joueur.hpp"
+#include "Robot.hpp"
 #include <iostream>
 
 //Constructeur création d'une fenêtre sfml
 SFMLManager::SFMLManager()
 {
-	window = new RenderWindow(VideoMode(800,600),"Robrawl");
+	window = new RenderWindow(VideoMode(WIDTH,HEIGHT),"Robrawl");
 	window->clear(Color::Black);
 }
  
@@ -30,9 +30,11 @@ RenderWindow*& SFMLManager::getWindow()
 //Trois par joueurs et pour le moment 2 joueurs
 void SFMLManager::eventManager()
 {
-	window->display();
 	
 	cout << "Fermez la fenêtre pour finir le jeu" << endl; 
+	
+	
+	window->display();
 	
 	while(window->isOpen())
 	{
@@ -59,24 +61,14 @@ void SFMLManager::eventManager()
 //Afficher un obstacle ou un joueur 
 void SFMLManager::displayObstacle(Obstacle& o)
 {
-	//Image = texture
-	Texture texture;
-	if(!(texture.loadFromFile("Image/obstacle_test.jpeg")))
-	{
-		cout << "Fail to load obstacle image/texture" << endl;
-		exit(0);
-	}
-	o.setImage(texture); //Position (0,0), taille de l'image
-	o.getImage().
-	setPosition(o.getPosition());
-	
-	window->draw(o.getImage());
+	window->draw(o.getSprite());
 }
 
+
 /*
-void SFMLManager::displayJoueur(const Joueur& j)
+void SFMLManager::displayRobot(Robot& rob)
 {
-	window->draw(j);
+	window->draw(rob);
 }
 */
 /*

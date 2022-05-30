@@ -1,8 +1,8 @@
 #include "Terrain.hpp"
 #include "Obstacle.hpp"
-	
+
 //Ajouter des élements dans le terrain (map)
-void Terrain::ajout(Element* e)
+void Terrain::ajout(elem_ptr e)
 {
 	elem.push_back(e);
 }
@@ -13,26 +13,56 @@ void Terrain::displayInWindow(SFMLManager& render)
 	
 	for(size_t i = 0; i < elem.size(); i++)
 		elem[i]->displayInWindow(render);
-		
-	render.eventManager();
 	
+	render.eventManager();
+}
+
+vector<Texture*> loadObstacles()
+{
+	vector<Texture*> texture;
+	Texture* t;
+	int counterObstacle = 1;
+	
+	while(counterObstacle != 0)
+	{
+		t = new Texture;
+		cout << "counterObstacle = " << counterObstacle << endl;
+		if(!t->loadFromFile("Image/Obstacles/Obstacles"+to_string(counterObstacle)+".jpeg"))
+		{
+			cout << "Failed to load image" << endl;
+			counterObstacle = 0;
+		}
+		else
+		{
+			texture.push_back(t);
+			counterObstacle++;
+		}
+	}
+	return texture;
 }
 	
 int main()
 {
 	Terrain map;
+	SFMLManager render;
+	//Random position 
+	srand(time(NULL));
+	Vector2f pos;
+	//Obstacle
+	elem_ptr o;
 	
-	SFMLManager f;
+	vector<Texture*> t = loadObstacles();
+	for(int i = 0; i < t.size(); i++)
+	{
+		pos.x = rand()%WIDTH;
+		pos.y = rand()%HEIGHT;
+		o = make_shared<Obstacle>(t[i],pos);
+		cout << o->getPosition().x << " " << o->getPosition().y << endl;
+		map.ajout(o);
+	}
 	
-	Obstacle* o1 = new Obstacle();
-	//Robot r1("O6",Vector2f(0,0),90,100);
-	//Joueur J1("Gabriel",r1);
+	map.displayInWindow(render);
 	
-	map.ajout(o1);
-	
-	cout << o1->getPosition().x <<" "<< o1->getPosition().y << endl;
-	
-	map.displayInWindow(f);
-
+		
 	return 0;
 }

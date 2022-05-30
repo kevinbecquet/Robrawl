@@ -6,8 +6,10 @@
 #include <iostream>
 
 class Obstacle;
-class Joueur;
 class Robot;
+
+#define WIDTH 1000
+#define HEIGHT 800
 
 using namespace std;
 using namespace sf;
@@ -23,7 +25,7 @@ class SFMLManager{
 		void eventManager();
 		//gestionCollision();
 		void displayObstacle(Obstacle& o);
-		//void displayJoueur(const Joueur& j);
+		//void displayRobot(Robot& rob);
 		//void displayText(const Text& t);
 };
 

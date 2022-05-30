@@ -1,11 +1,11 @@
 #include "Obstacle.hpp"
 
 
-Obstacle::Obstacle()
+Obstacle::Obstacle(Texture* t, Vector2f pos) : Element(pos)
 {
-	srand(time(NULL));
-	position.x = rand()%800;
-	position.y = rand()%600;
+	//We set the sprite's texture and position 
+	sprite.setTexture(*t);
+	sprite.setPosition(position);
 }
 
 void Obstacle::displayInWindow(SFMLManager& s) 

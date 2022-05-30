@@ -2,31 +2,30 @@
 #define ROBOT
 
 #include <cmath>
-
-#include <cstdlib>
-#include <fstream>
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
+#include "Element.hpp"
+
 using namespace sf;
 using namespace std;
 
 #define VITESSE 0.75
 #define VITESSE_ROTATION M_PI/60
 
-class Robot
+class Robot : public Element
 {
 	private :
 		string nom;
-		Vector2f position;
 		float orientation;
 		int vie;
 		//Sprite im;
 
 	public :
 	
+		Robot();
 		//constructeur classique
-		Robot(String n, Vector2f p, float o, int v ) : nom(n), position(p), orientation(o), vie(v){};
+		Robot(Vector2f p,string n, float o, int v ) : Element(p), nom(n), orientation(o), vie(v){};
 		//Constructeur par copie
 		Robot(const Robot& r)
 		{
@@ -43,7 +42,6 @@ class Robot
 			return *this;
 		}
 		//les getters
-		Vector2f getPosition(){ return position;}
 		float getOrientation(){return orientation;}
 		int getVie(){return vie;}
 

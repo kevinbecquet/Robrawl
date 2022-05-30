@@ -7,14 +7,11 @@ class Terrain
 {
 
 	private :
-		vector<Element*> elem;
+		vector<elem_ptr> elem;
 	
 	public :
-		~Terrain(){ 
-			for( Element* e : elem)
-				delete e;
-			}
-		void ajout(Element* e);
+		void ajout(elem_ptr e);
+		vector<elem_ptr> getElem(){ return elem;}
 		void displayInWindow(SFMLManager& render);
 		
 };
