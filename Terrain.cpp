@@ -7,22 +7,39 @@ void Terrain::ajout(elem_ptr e)
 	elem.push_back(e);
 }
 
-//Les afficher dans le terrain 
+//Les afficher dans le terrain
 void Terrain::displayInWindow(SFMLManager& render)
 {
-	
+
 	for(size_t i = 0; i < elem.size(); i++)
 		elem[i]->displayInWindow(render);
-	
-	render.eventManager();
+
+	for(mvElt_ptr mv : mvElem )
+	{
+		mv->displayInWindow(render);
+	}
+
 }
+/*
+void Terrain::deplace(){
+	for(mvElt_ptr mov : obj){
+
+		for(elem_ptr obs : elem ){
+
+			Vector2f pObs =
+
+		}
+		mov->deplace();
+	}
+}
+*/
 
 vector<Texture*> loadObstacles()
 {
 	vector<Texture*> texture;
 	Texture* t;
 	int counterObstacle = 1;
-	
+
 	while(counterObstacle != 0)
 	{
 		t = new Texture;
@@ -40,17 +57,19 @@ vector<Texture*> loadObstacles()
 	}
 	return texture;
 }
-	
+
+
+
 int main()
 {
 	Terrain map;
 	SFMLManager render;
-	//Random position 
+	//Random position
 	srand(time(NULL));
 	Vector2f pos;
 	//Obstacle
 	elem_ptr o;
-	
+
 	vector<Texture*> t = loadObstacles();
 	for(int i = 0; i < t.size(); i++)
 	{
@@ -60,9 +79,14 @@ int main()
 		cout << o->getPosition().x << " " << o->getPosition().y << endl;
 		map.ajout(o);
 	}
-	
-	map.displayInWindow(render);
-	
-		
+
+	while(1){
+		render.clearWindow();
+		map.displayInWindow(render);
+
+		render.eventManager();
+
+	}
+
 	return 0;
 }

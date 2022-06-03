@@ -17,7 +17,7 @@ using namespace sf;
 class SFMLManager{
 	protected :
 		RenderWindow* window;
-	
+
 	public :
 		SFMLManager();
 		~SFMLManager();
@@ -25,8 +25,11 @@ class SFMLManager{
 		void eventManager();
 		//gestionCollision();
 		void displayObstacle(Obstacle& o);
-		//void displayRobot(Robot& rob);
+		void displayRobot(Robot& rob);
 		//void displayText(const Text& t);
+
+
+		void clearWindow();
 };
 
 #endif

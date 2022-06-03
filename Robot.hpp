@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
-#include "Element.hpp"
+#include "MovingElt.hpp"
 
 using namespace sf;
 using namespace std;
@@ -13,7 +13,7 @@ using namespace std;
 #define VITESSE 0.75
 #define VITESSE_ROTATION M_PI/60
 
-class Robot : public Element
+class Robot : public MovingElt
 {
 	private :
 		string nom;
@@ -22,10 +22,10 @@ class Robot : public Element
 		//Sprite im;
 
 	public :
-	
+
 		Robot();
 		//constructeur classique
-		Robot(Vector2f p,string n, float o, int v ) : Element(p), nom(n), orientation(o), vie(v){};
+		Robot(Vector2f p,string n, float o, int v ) : MovingElt(p), nom(n), orientation(o), vie(v){};
 		//Constructeur par copie
 		Robot(const Robot& r)
 		{
@@ -52,6 +52,8 @@ class Robot : public Element
 		void reoriente(int direction);
 		//chaque robot à son attaque
 		//virtual void attaque() = 0;
+
+		void displayInWindow(SFMLManager& s);
 };
 
 
