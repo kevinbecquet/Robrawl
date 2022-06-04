@@ -3,6 +3,8 @@
 #include "Robot.hpp"
 #include <iostream>
 
+Event e;
+
 //Constructeur création d'une fenêtre sfml
 SFMLManager::SFMLManager()
 {
@@ -38,21 +40,10 @@ void SFMLManager::eventManager()
 	
 	while(window->isOpen())
 	{
-		Event e;
 		while(window->pollEvent(e))
 		{
 			if(e.type == Event::Closed)
 				window->close();
-			
-			/*if(e.type == Event::KeyPressed)
-			{
-				if(event.key.code == Keyboard::q || event.key.code == Keyboard::j)
-					rob.reoriente(-1);
-				else if(event.key.code == Keyboard::d || event.key.code == Keyboard::l)
-					rob.reoriente(1);
-				else if(event.key.code == Keyboard::s || event.key.code == Keyboard::k)
-					rob.attaque();*/
-			//}
 				
 		}
 	}
@@ -65,12 +56,23 @@ void SFMLManager::displayObstacle(Obstacle& o)
 }
 
 
-/*
+
 void SFMLManager::displayRobot(Robot& rob)
 {
+	
+	
+	if(e.type == Event::KeyPressed)
+	{
+		if(event.key.code == Keyboard::q || event.key.code == Keyboard::j)
+			rob.reoriente(-1);
+		else if(event.key.code == Keyboard::d || event.key.code == Keyboard::l)
+			rob.reoriente(1);
+		else if(event.key.code == Keyboard::s || event.key.code == Keyboard::k)
+			rob.attaque();
+	}
 	window->draw(rob);
 }
-*/
+
 /*
 void SFMLManager::displayText(const Text& t)
 {
