@@ -16,15 +16,13 @@ using namespace std;
 class Robot : public MovingElt
 {
 	private :
-		int nom;
-		float orientation;
 		int vie;
 		
 	public :
 	
 		Robot();
 		//constructeur classique
-		Robot(Vector2f p,int n, float o, int v) : MovingElt(p), nom(n), orientation(o), vie(v){};
+		Robot(Vector2f p,string n, float o, int v) : MovingElt(p,n,o),  vie(v){};
 		//Constructeur par copie
 		Robot(const Robot& r)
 		{
@@ -43,7 +41,7 @@ class Robot : public MovingElt
 		//les getters
 		float getOrientation(){return orientation;}
 		int getVie(){return vie;}
-		int getNom(){return nom;}
+		
 		
 		
 

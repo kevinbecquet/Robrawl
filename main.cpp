@@ -45,7 +45,7 @@ int main()
 	
 	Vector2f p(0,0);
 	////Créer un robot
-	Robot* rob1 = new Robot(p,1,0,10);
+	Robot* rob1 = new Robot(p,"Robot1",0,10);
 	Texture* te = new Texture;
 	te->loadFromFile("Image/Robots/Robot1.jpeg");
 	rob1->setIm(te);

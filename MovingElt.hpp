@@ -13,10 +13,12 @@ class MovingElt{
 	protected :
 		Vector2f position;
 		Sprite im;
+		string nom;
+		float orientation;
 
 	public :
 		MovingElt(){};
-		MovingElt(Vector2f p) : position(p){};
+		MovingElt(Vector2f p, string n, float o) : position(p), nom(n), orientation(o){};
 		virtual ~MovingElt(){};
 		Vector2f getPosition(){ return position;}
 		virtual void reoriente(int) = 0;
@@ -32,6 +34,7 @@ class MovingElt{
 			im.setPosition(this->position);
 		}
 		virtual void displayInWindow(SFMLManager&) =0;
+		string getNom(){return nom;}
 };
 
 #endif
