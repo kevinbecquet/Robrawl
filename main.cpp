@@ -2,19 +2,20 @@
 #include "Obstacle.hpp"
 #include "Robot.hpp"
 
-vector<Texture*> loadObstacles();
-bool check_pos(vector<Vector2f> position, Vector2f pos);
+
 	
 int main()
 {
 	
-	//S'occuper des obstacles une bonne fois pour toute
-	//////////////////////////
+	
 	
 	//Création d'une map
 	Terrain map;
 	//Gestion de l'affichage
 	SFMLManager render;
+	
+	//S'occuper des obstacles une bonne fois pour toute
+	//////////////////////////
 	//Random position pour les obstacles 
 	srand(time(NULL));
 	Vector2f pos;
@@ -41,17 +42,20 @@ int main()
 		map.ajout(o);
 	}
 	
-	/////////////////
+	//S'occuper des deux robots
+	vector<Vector2f> start_pt;
+	Vector2f start1(0,0);
+	Vector2f start2(500,500);
+	start_pt.push_back(start1);
+	start_pt.push_back(start2);
 	
-	Vector2f p(0,0);
-	////Créer un robot
-	Robot* rob1 = new Robot(p,"Robot1",0,10);
-	Texture* te = new Texture;
-	te->loadFromFile("Image/Robots/Robot1.jpeg");
-	rob1->setIm(te);
-	//ajout dans la map
-	map.ajout(rob1);
+	vector<Robot*> rob;
+	Robot* robot;
+	rob = loadRobot(robot, start_pt);
+	for(Robot* r : rob)
+		map.ajout(r);
 	
+	cout << map.getElem().size() << endl;
 	
 	map.displayInWindow(render);
 	//Gérer le déplacement

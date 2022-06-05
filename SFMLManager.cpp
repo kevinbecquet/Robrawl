@@ -69,7 +69,7 @@ void SFMLManager::eventManager(Terrain map)
 				}		
 					map.getElem()[i]->deplace();
 					map.getElem()[i]->setImPos();
-					cout << map.getElem()[i]->getPosition().x << " " << map.getElem()[i]->getPosition().y << endl;
+					//cout << map.getElem()[i]->getPosition().x << " " << map.getElem()[i]->getPosition().y << endl;
 					window->clear(Color::Black);
 						
 					window->draw(map.getElem()[i]->getIm());

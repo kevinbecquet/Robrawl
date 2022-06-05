@@ -20,4 +20,9 @@ class Terrain
 		
 };
 
+vector<Texture*> loadObstacles();
+bool check_pos(vector<Vector2f> position, Vector2f pos);
+vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt);
+
+
 #endif 

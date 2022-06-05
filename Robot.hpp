@@ -22,7 +22,7 @@ class Robot : public MovingElt
 	
 		Robot();
 		//constructeur classique
-		Robot(Vector2f p,string n, float o, int v) : MovingElt(p,n,o),  vie(v){};
+		Robot(Vector2f p, string n, float o, int v) : MovingElt(p,n,o),  vie(v){};
 		//Constructeur par copie
 		Robot(const Robot& r)
 		{

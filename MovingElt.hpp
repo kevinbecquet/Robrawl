@@ -8,6 +8,8 @@
 using namespace std;
 using namespace sf;
 
+//Un objet mobile est un robot ou un missile
+//Ils ont tous les deux une position - un nom - orientation - position et image
 class MovingElt{
 
 	protected :
@@ -32,6 +34,10 @@ class MovingElt{
 		void setImPos()
 		{
 			im.setPosition(this->position);
+		}
+		void setImPos(Vector2f init_pos)
+		{
+			im.setPosition(init_pos);
 		}
 		virtual void displayInWindow(SFMLManager&) =0;
 		string getNom(){return nom;}
