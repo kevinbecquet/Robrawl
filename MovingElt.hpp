@@ -3,6 +3,7 @@
 
 #include "SFMLManager.hpp"
 #include <memory>
+#define ScaleFactor 0.3
 
 using namespace std;
 using namespace sf;
@@ -24,6 +25,7 @@ class MovingElt{
 		void setIm(Texture* t)
 		{ 
 			im.setTexture(*t);
+			im.scale(Vector2f(ScaleFactor,ScaleFactor));
 		}
 		void setImPos()
 		{

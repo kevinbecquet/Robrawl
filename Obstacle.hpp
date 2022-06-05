@@ -3,6 +3,7 @@
 
 #include "SFMLManager.hpp"
 #include <time.h>
+#define scaleFactor 0.25
 
 using namespace sf;
 
