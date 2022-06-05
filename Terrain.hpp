@@ -1,0 +1,23 @@
+#ifndef TERRAIN
+#define TERRAIN
+
+#include "MovingElt.hpp"
+#include "Obstacle.hpp"
+
+class Terrain
+{
+
+	private :
+		vector<MovingElt*> elem;
+		vector<Obstacle> obs;
+	
+	public :
+		void ajout(MovingElt* e);
+		void ajout(Obstacle o);
+		vector<Obstacle> getObs(){return obs;}
+		vector<MovingElt*> getElem(){ return elem;}
+		void displayInWindow(SFMLManager& render);
+		
+};
+
+#endif 
