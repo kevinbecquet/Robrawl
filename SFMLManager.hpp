@@ -7,6 +7,7 @@
 
 class Obstacle;
 class Robot;
+class Terrain;
 
 #define WIDTH 1000
 #define HEIGHT 800
@@ -22,11 +23,10 @@ class SFMLManager{
 		SFMLManager();
 		~SFMLManager();
 		RenderWindow*& getWindow();
-		void eventManager();
-		//gestionCollision();
-		void displayObstacle(Obstacle& o);
-		//void displayRobot(Robot& rob);
-		//void displayText(const Text& t);
+		void eventManager(Terrain map);
+		void displayRobot(Robot& rob);
+		void displayObstacle(Obstacle& obs);
+
 };
 
 #endif

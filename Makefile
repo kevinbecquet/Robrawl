@@ -6,18 +6,18 @@ CPPFLAGS=-std=c++14
 $(Exec) : Obstacle.o Robot.o  Terrain.o SFMLManager.o
 	$(CPP) -o Robrawl Robot.o Terrain.o SFMLManager.o Obstacle.o $(LibSfml) -g
 
-Robot.o : Robot.cpp Robot.hpp Element.hpp
+Robot.o : Robot.cpp Robot.hpp MovingElt.hpp
 	$(CPP) $(CPPFLAGS) -Wall -c Robot.cpp -g
 
 
-Obstacle.o : Obstacle.cpp Obstacle.hpp Element.hpp
+Obstacle.o : Obstacle.cpp Obstacle.hpp 
 	$(CPP) $(CPPFLAGS) -Wall -c Obstacle.cpp -g
 	
 
-Terrain.o : Terrain.cpp Terrain.hpp Element.hpp
+Terrain.o : Terrain.cpp Terrain.hpp MovingElt.hpp
 	$(CPP)  $(CPPFLAGS) -c Terrain.cpp -g
 
-SFMLManager.o : SFMLManager.cpp SFMLManager.hpp Obstacle.hpp Robot.hpp
+SFMLManager.o : SFMLManager.cpp SFMLManager.hpp Obstacle.hpp Robot.hpp MovingElt.hpp
 	$(CPP) $(CPPFLAGS) -Wall -c SFMLManager.cpp -g
 
 clean :

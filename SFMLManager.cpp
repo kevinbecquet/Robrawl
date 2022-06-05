@@ -1,15 +1,16 @@
 #include "SFMLManager.hpp"
 #include "Obstacle.hpp"
 #include "Robot.hpp"
+#include "Terrain.hpp"
 #include <iostream>
 
-Event e;
 
 //Constructeur création d'une fenêtre sfml
 SFMLManager::SFMLManager()
 {
 	window = new RenderWindow(VideoMode(WIDTH,HEIGHT),"Robrawl");
 	window->clear(Color::Black);
+	window->display();
 }
  
 //Déstructeur de l'instance
@@ -30,55 +31,63 @@ RenderWindow*& SFMLManager::getWindow()
 //d et l : aller à droite
 //s et k : attaquer
 //Trois par joueurs et pour le moment 2 joueurs
-void SFMLManager::eventManager()
+void SFMLManager::eventManager(Terrain map)
 {
 	
 	cout << "Fermez la fenêtre pour finir le jeu" << endl; 
 	
 	
-	window->display();
-	
+	int direct = 0;
+	Event e;
 	while(window->isOpen())
 	{
+		
 		while(window->pollEvent(e))
 		{
+			//key manager 
+			if(e.type == Event::KeyPressed)
+			{
+				if(e.key.code == Keyboard::Q || e.key.code == Keyboard::J)
+					direct = -1;
+				
+				if(e.key.code == Keyboard::D || e.key.code == Keyboard::L)
+					direct = 1;
+								
+				else
+					direct = 0;
+			}	
+			for(size_t i = 0; i < map.getElem().size(); i++)
+			{
+				map.getElem()[i]->reoriente(direct);
+				map.getElem()[i]->deplace();
+				map.getElem()[i]->setImPos();
+				cout << map.getElem()[i]->getPosition().x << " " << map.getElem()[i]->getPosition().y << endl;
+				window->clear(Color::Black);
+					
+				window->draw(map.getElem()[i]->getIm());
+			}
+			for(size_t i = 0; i < map.getObs().size(); i++)
+					window->draw(map.getObs()[i].getSprite());
+			
+			window->display();	
+			
 			if(e.type == Event::Closed)
 				window->close();
-				
-		}
+		}	
 	}
 }
-
-//Afficher un obstacle ou un joueur 
-void SFMLManager::displayObstacle(Obstacle& o)
-{
-	window->draw(o.getSprite());
-}
-
-
 
 void SFMLManager::displayRobot(Robot& rob)
 {
-	
-	
-	if(e.type == Event::KeyPressed)
-	{
-		if(event.key.code == Keyboard::q || event.key.code == Keyboard::j)
-			rob.reoriente(-1);
-		else if(event.key.code == Keyboard::d || event.key.code == Keyboard::l)
-			rob.reoriente(1);
-		else if(event.key.code == Keyboard::s || event.key.code == Keyboard::k)
-			rob.attaque();
-	}
-	window->draw(rob);
+	window->draw(rob.getIm());
+	window->display();
 }
 
-/*
-void SFMLManager::displayText(const Text& t)
+void SFMLManager::displayObstacle(Obstacle& obs)
 {
-	window->draw(t);
+	window->draw(obs.getSprite());
+	window->display();
 }
-*/		
 
 
 

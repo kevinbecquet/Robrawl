@@ -1,23 +1,23 @@
 #ifndef OBSTACLE
 #define OBSTACLE
 
-
+#include "SFMLManager.hpp"
 #include <time.h>
-#include "Element.hpp"
 
 using namespace sf;
 
 
-class Obstacle : public Element
+class Obstacle 
 {
 	private :
 		Sprite sprite;
+		Vector2f position;
 	
 	public :
 		Obstacle(Texture* t, Vector2f pos);
 		Sprite getSprite(){ return sprite; }
-		void displayInWindow(SFMLManager& s);
-		
+		Vector2f getPosition(){ return position;}
+		void displayInWindow(SFMLManager& render);
 };
 		
 #endif 

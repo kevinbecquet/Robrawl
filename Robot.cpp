@@ -19,3 +19,8 @@ void Robot::reoriente(int direction){
 	//if (orientation > 360) orientation -= 360;
 	//else if (orientation < 360) orientation += 360;
 }
+
+void Robot::displayInWindow(SFMLManager& render)
+{
+	render.displayRobot(*this);
+}

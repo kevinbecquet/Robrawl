@@ -1,17 +1,21 @@
 #ifndef TERRAIN
 #define TERRAIN
 
-#include "Element.hpp"
+#include "MovingElt.hpp"
+#include "Obstacle.hpp"
 
 class Terrain
 {
 
 	private :
-		vector<elem_ptr> elem;
+		vector<MovingElt*> elem;
+		vector<Obstacle> obs;
 	
 	public :
-		void ajout(elem_ptr e);
-		vector<elem_ptr> getElem(){ return elem;}
+		void ajout(MovingElt* e);
+		void ajout(Obstacle o);
+		vector<Obstacle> getObs(){return obs;}
+		vector<MovingElt*> getElem(){ return elem;}
 		void displayInWindow(SFMLManager& render);
 		
 };
