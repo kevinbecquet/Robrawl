@@ -43,5 +43,7 @@ missiles ont été ajoutés.
 
 ## Organisation
 Kevin s'est occupé des methodes de déplacement et collisions
+
 Razane des méthodes d'affichage et gestions d'événements
+
 On a principalement communiqué par facebook et partagé nos avancé sur github et discord
