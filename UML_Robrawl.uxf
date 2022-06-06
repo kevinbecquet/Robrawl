@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>610</y>
+      <w>450</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>Robot
+--
+- int : vie
+- nom : string;
+- orientation : float; 
+--
++ Robot()
++ Robot(p :Vector2f, t : Texture*, v: int, n : string, o: float) 
++ Robot(r : const Robot&amp;)
++ operator=(r : const Robot&amp;) : Robot&amp;
++ deplace() : void
++ getVie() : int
++ getOrientation() : float
++ getNom() : string
++ reoriente(direction : int) : void
++ attaque(missile : Missile*, render : SFMLManager&amp;) : void
++ displayInWindow( r : SFMLManager&amp;) : void 
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>0</y>
+      <w>390</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Terrain
+--
+- vector&lt;MovingElt*&gt; : elem
+- vector&lt;Obstacle&gt; : obs
+--
++ ajout(e : MovingElt*) : void
++ ajout(o : Obstacle) : void
++ getElem() : vector&lt;MovingElt*&gt;
++ getObs() : vector&lt;Obstacle&gt;
++ displayInWindow(render : SFMLManager&amp;) : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>170</y>
+      <w>380</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Obstacle
+--
+- img : sf::sprite
+- position : sf::Vector2f
+
+--
++ Obstacle(t : Texture*, pos : Vector2f)
++ getSprite() : Sprite
++ getPosition() : sf::Vector2f
++ displayInwindow(render : SFMLManager&amp;) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>170</y>
+      <w>60</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=0...n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>330</y>
+      <w>400</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>SFMLManager
+--
+# window : sf::RenderWindow*
+
+--
++ SFMLManager()
++~ SFMLManager()
++ getWindow() : RenderWindow*&amp;
++ eventManager(rob : Robot*, missile : Missile*, map : Terrain) : void
++ displayRobot(rob : Robot&amp;) : void
++ displayObstacle(obs : Obstacle&amp;) :void
++ displayMissile(miss : Missile&amp;) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>250</y>
+      <w>440</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>/MovingElt/
+--
+# position : sf::Vector2f;
+# im : sf::Sprite;
+
+--
++ MovingElt()
++ MovingElt( p : sf::Vector2f, t : Texture*)
++ virtual ~MovingElt()
++ getPosition() : Vector2f
++ getIm() : Sprite
++ setImPos() : void
++ setImPos(init_pos : Vector2f) : void
+/+ virtual displayInWindow(render : SFMLManager&amp;) : void /
+/+ deplace() : void/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>490</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>590</y>
+      <w>380</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>Missile
+--
++ Missile()
++ displayInWindow(r : SFMLManager&amp;) : void 
++ deplace() : void 
++ inWindow() : bool
++ InitImPos(r : Robot*) : void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>400</y>
+      <w>250</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>100</y>
+      <w>270</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=0...n
+m2=1</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>
