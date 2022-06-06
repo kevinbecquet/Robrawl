@@ -1,13 +1,11 @@
 #include "Terrain.hpp"
 #include "Obstacle.hpp"
 #include "Robot.hpp"
-
+#include "Missile.hpp"
 
 	
 int main()
 {
-	
-	
 	
 	//Création d'une map
 	Terrain map;
@@ -55,13 +53,13 @@ int main()
 	for(Robot* r : rob)
 		map.ajout(r);
 	
+	//Ajouter à objet missile à la fin de la map : convention
+	Missile* missile = new Missile();
+	map.ajout(missile);
+	
 	cout << map.getElem().size() << endl;
 	
 	map.displayInWindow(render);
-	//Gérer le déplacement
-	render.eventManager(map);
-	
-
 	
 		
 	return 0;

@@ -6,23 +6,24 @@
 
 #include <SFML/Graphics.hpp>
 #include "MovingElt.hpp"
+#include "Terrain.hpp"
+#include "Missile.hpp"
 
 using namespace sf;
 using namespace std;
-
-#define VITESSE 0.75
-#define VITESSE_ROTATION M_PI/60
 
 class Robot : public MovingElt
 {
 	private :
 		int vie;
+		string nom;
+		float orientation;
 		
 	public :
 	
-		Robot();
+		Robot(){};
 		//constructeur classique
-		Robot(Vector2f p, string n, float o, int v) : MovingElt(p,n,o),  vie(v){};
+		Robot(Vector2f p, Texture* t, int v, string n, float o) : MovingElt(p,t), vie(v), nom(n), orientation(o){};
 		//Constructeur par copie
 		Robot(const Robot& r)
 		{
@@ -40,15 +41,17 @@ class Robot : public MovingElt
 		}
 		//les getters
 		int getVie(){return vie;}
+		//Retourne l'orientation d'un objet
+		float getOrientation(){return orientation;}
+		//Retourne le nom d'un objet
+		string getNom(){return nom;}
 		
-
+		void reoriente(int direction);
 		//déplace le robot suivant X et Y
 		void deplace();
 		//Reoriente le robot en affichant une fleche qui tourne sur 180° à droite ou à gauche
-		void reoriente(int direction);
-		//chaque robot à son attaque
-		//virtual void attaque() = 0;
-    
+		void attaque(Missile* missile, SFMLManager& render);
+		
         void displayInWindow(SFMLManager& s);
 };
 

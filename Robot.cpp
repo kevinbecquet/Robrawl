@@ -11,16 +11,30 @@ void Robot::deplace()
 
 	position.x = x;
 	position.y = y;
+}	
+
+void Robot::displayInWindow(SFMLManager& render)
+{
+	render.displayRobot(*this);
 }
 
-void Robot::reoriente(int direction){
-
+void Robot::reoriente(int direction)
+{
 	orientation += direction*VITESSE_ROTATION ;
 	//if (orientation > 360) orientation -= 360;
 	//else if (orientation < 360) orientation += 360;
 }
 
-void Robot::displayInWindow(SFMLManager& render)
+void Robot::attaque(Missile* missile, SFMLManager& render)
 {
-	render.displayRobot(*this);
+	Time t = milliseconds(100);
+	//Convention : dernier élément de la map est un missile
+	do
+	{
+		missile->InitImPos(*this);
+		missile->deplace();
+		missile->displayInWindow(render);
+		sleep(t);
+		
+	}while(missile->inWindow());
 }

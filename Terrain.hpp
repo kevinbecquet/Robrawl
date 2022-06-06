@@ -1,8 +1,8 @@
 #ifndef TERRAIN
 #define TERRAIN
 
-#include "MovingElt.hpp"
 #include "Obstacle.hpp"
+#include "Robot.hpp"
 
 class Terrain
 {
