@@ -29,16 +29,13 @@ Le robot en haut à gauche :
 1. q pour tourner dans le sens trigonometrique 
 2. d pour tourner dans le sens horaire
 3. s pour l'attaque
+
 Le robot qu centre de l'écran :
 1. j pour dans le sens trigonometrique 
 2. l pour tourner dans le sens horaire 
 3. k pour l'attaque 
 
-Pour le moment le jeu ne permet que d'avancer dans la map et gère les collisions. L'affichage et 
-l'utilisation des missiles a rencontré un mauvais contre temps dû aux hpp. Une de nos classes, 
-*Terrain*, étant considérée non encore définie par le compilateur.
-Deux fichiers avec la version à moitié fonctionnelle sans missile et non fonctionnelle avec 
-missiles ont été ajoutés.
+Pour le moment le jeu ne permet que d'avancer dans la map et gère les collisions. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale.
 
 ## Organisation
 Kevin s'est occupé des méthodes de déplacement et collisions
