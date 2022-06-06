@@ -26,23 +26,23 @@ Chaque robot correspond à un joueur, dirigé par trois touches. Une pour avance
 une autre vers l'avant et une dernière pour attaquer.
 
 Le robot en haut à gauche : 
-1. q pour l'arrière 
-2. d pour l'avant 
+1. q pour tourner dans le sens trigonometrique 
+2. d pour tourner dans le sens horaire
 3. s pour l'attaque
 Le robot qu centre de l'écran :
-1. j pour l'arrière
-2. l pour l'avant 
+1. j pour dans le sens trigonometrique 
+2. l pour tourner dans le sens horaire 
 3. k pour l'attaque 
 
 Pour le moment le jeu ne permet que d'avancer dans la map et gère les collisions. L'affichage et 
-l'utilisation des missiles à rencontrer un mauvais contre temps dû aux hpp. Une de nos classes, 
+l'utilisation des missiles a rencontré un mauvais contre temps dû aux hpp. Une de nos classes, 
 *Terrain*, étant considérée non encore définie par le compilateur.
 Deux fichiers avec la version à moitié fonctionnelle sans missile et non fonctionnelle avec 
 missiles ont été ajoutés.
 
 ## Organisation
-Kevin s'est occupé des methodes de déplacement et collisions
+Kevin s'est occupé des méthodes de déplacement et collisions
 
 Razane des méthodes d'affichage et gestions d'événements
 
-On a principalement communiqué par facebook et partagé nos avancé sur github et discord
+On a principalement communiqué par facebook et partagé nos avancées sur github et discord
