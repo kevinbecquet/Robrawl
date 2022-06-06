@@ -6,14 +6,20 @@ Kevin Becquet
 Azrou Razane
 ## Bibliothèque spéciale
 SFML
+
 Comment l'installer ? Dans votre terminal linux :
+
 `sudo apt-get install libsml-dev`
+
 ## Compilation du programme 
 Pour lancer notre jeu, rien de plus simple. Ouvrez votre terminal dans le dossier Robrawl et
 lancer les lignes suivantes dans l'ordre :
-`make
-./Robrawl`
+`make`
+
+`./Robrawl`
+
 Après le make un petit warning s'affichera. Ne vous en souciez pas.
+
 ## Plus sur le jeu
 Une map au fond noir avec deux robots et deux obstacles s'affichera.
 Chaque robot correspond à un joueur, dirigé par trois touches. Une pour avancer vers l'arrière,
