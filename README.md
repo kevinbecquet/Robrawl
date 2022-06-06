@@ -14,6 +14,7 @@ Comment l'installer ? Dans votre terminal linux :
 ## Compilation du programme 
 Pour lancer notre jeu, rien de plus simple. Ouvrez votre terminal dans le dossier Robrawl et
 lancer les lignes suivantes dans l'ordre :
+
 `make`
 
 `./Robrawl`
