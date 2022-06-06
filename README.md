@@ -42,9 +42,11 @@ Le robot au centre de l'écran :
 
 ## Avancement du projet
 
-Suite à un problème de mise en commun des méthode de collisions et de missiles nous avons deux dossiers différents comprenant l'avancée du projet sur sur ces points respectifs : Robrawl reprenant l'avancée sur la partie collision et Robrawl2 l'avancée de la partie missile.
+Suite à un problème de mise en commun des méthode de collisions et de missiles nous avons deux dossiers différents comprenant l'avancée du projet sur ces points respectifs : Robrawl reprenant l'avancée sur la partie collision et Robrawl2 l'avancée de la partie missile.
 
-Pour le moment le jeu ne permet que d'avancer dans la map. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale. La position des obstacles peut parfois être en partie à l'extérieur de la fenêtre et un dossier à part est ajouté par rapport aux collisions, non intégrées au code principale, car elles ne marchent pas tout à fait.
+Pour le moment le dossier Robrawl2 ne permet que d'avancer dans la map. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale. La position des obstacles peut parfois être en partie à l'extérieur de la fenêtre.
+
+Le dossier Robrawl permet d'avoir un déplacement dans la fenêtre, sans gestion de missile.
 
 ## Organisation
 Kevin s'est occupé des méthodes de déplacement et collisions
