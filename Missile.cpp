@@ -17,7 +17,7 @@ void Missile::deplace()
 		
 	position.x += 0.25;
 	this->setImPos();
-	//cout << "posMissile : " <<  "x :" << position.x << "y : " << position.y << endl;
+	cout << "posMissile : " <<  "x :" << position.x << "y : " << position.y << endl;
 }
 
 bool Missile::inWindow()
