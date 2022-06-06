@@ -30,7 +30,7 @@ Le robot en haut à gauche :
 2. d pour tourner dans le sens horaire
 3. s pour l'attaque
 
-Le robot qu centre de l'écran :
+Le robot au centre de l'écran :
 1. j pour dans le sens trigonometrique 
 2. l pour tourner dans le sens horaire 
 3. k pour l'attaque 
