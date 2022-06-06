@@ -1,6 +1,10 @@
 # Robrawl Game
-Ce jeu consiste en une bataille de deux robots, dans un terrain avec des obstacles. Ces robots 
+Ce jeu consiste en une bataille de deux robots, dans un terrain avec des obstacles. Ces robots
 se lancent des missiles, et celui qui perd le plus de points meurt.
+
+L'intégration d'une IA serait possible en remplaçant les entrées clavier du deuxième joueur 
+par des décisions faite par cette dernière.
+
 ## Les auteures 
 Kevin Becquet et Azrou Razane
 ## Bibliothèque spéciale
@@ -11,6 +15,7 @@ Comment l'installer ? Dans votre terminal linux :
 `sudo apt-get install libsml-dev`
 
 ## Compilation du programme 
+
 Pour lancer notre jeu, rien de plus simple. Ouvrez votre terminal dans le dossier Robrawl et
 lancer les lignes suivantes dans l'ordre :
 
@@ -26,14 +31,18 @@ Chaque robot correspond à un joueur, dirigé par trois touches. Une pour avance
 une autre vers l'avant et une dernière pour attaquer.
 
 Le robot en haut à gauche : 
-1. q pour tourner dans le sens trigonometrique 
-2. d pour tourner dans le sens horaire
+1. q pour tourner dans le sens horaire
+2. d pour tourner dans le sens trigonometrique
 3. s pour l'attaque
 
 Le robot au centre de l'écran :
-1. j pour dans le sens trigonometrique 
-2. l pour tourner dans le sens horaire 
+1. j pour dans le sens horaire 
+2. l pour tourner dans le sens trigonometrique 
 3. k pour l'attaque 
+
+## Avancement du projet
+
+Suite à un problème de mise en commun des méthode de collisions et de missiles nous avons deux dossiers différents comprenant l'avancée du projet sur sur ces points respectifs : Robrawl reprenant l'avancée sur la partie collision et Robrawl2 l'avancée de la partie missile.
 
 Pour le moment le jeu ne permet que d'avancer dans la map. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale. La position des obstacles peut parfois être en partie à l'extérieur de la fenêtre et un dossier à part est ajouté par rapport aux collisions, non intégrées au code principale, car elles ne marchent pas tout à fait.
 
