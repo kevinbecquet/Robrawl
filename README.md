@@ -1,7 +1,7 @@
 # Robrawl Game
 Ce jeu consiste en une bataille de deux robots, dans un terrain avec des obstacles. Ces robots 
 se lancent des missiles, et celui qui perd le plus de points meurt.
-## Les autaires 
+## Les auteures 
 Kevin Becquet et Azrou Razane
 ## Bibliothèque spéciale
 SFML
