@@ -39,10 +39,7 @@ class Robot : public MovingElt
 			return *this;
 		}
 		//les getters
-		float getOrientation(){return orientation;}
 		int getVie(){return vie;}
-		
-		
 		
 
 		//déplace le robot suivant X et Y

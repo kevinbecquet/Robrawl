@@ -26,6 +26,7 @@ class MovingElt{
 		virtual void reoriente(int) = 0;
 		virtual void deplace() = 0;
 		Sprite getIm(){return im;}
+		float getOrientation(){return orientation;}
 		void setIm(Texture* t)
 		{ 
 			im.setTexture(*t);
