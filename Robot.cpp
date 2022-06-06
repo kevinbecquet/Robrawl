@@ -31,7 +31,6 @@ void Robot::attaque(Missile* missile, SFMLManager& render)
 	//Convention : dernier élément de la map est un missile
 	do
 	{
-		missile->InitImPos(*this);
 		missile->deplace();
 		missile->displayInWindow(render);
 		sleep(t);

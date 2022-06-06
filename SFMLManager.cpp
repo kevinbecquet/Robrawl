@@ -36,6 +36,7 @@ void SFMLManager::eventManager(Robot* rob, Missile* missile, Terrain map)
 {
 	Event e;
 	int fire = 0;
+	
 	while(window->pollEvent(e))
 	{
 		window->clear(Color::Black);
@@ -102,9 +103,10 @@ void SFMLManager::eventManager(Robot* rob, Missile* missile, Terrain map)
 			window->close();
 	}
 	window->draw(rob->getIm());
+	missile->InitImPos(rob);
 	if(fire)
 	{
-		rob->attaque(missile,rob,*this);
+		rob->attaque(missile,*this);
 		fire = 0;
 	}
 	for(Obstacle o : map.getObs())
