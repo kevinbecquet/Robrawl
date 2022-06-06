@@ -43,6 +43,7 @@ void SFMLManager::eventManager(Terrain map)
 		
 		while(window->pollEvent(e))
 		{
+			window->clear(Color::Black);
 			for(size_t i = 0; i < map.getElem().size(); i++)
 			{
 			
@@ -53,24 +54,38 @@ void SFMLManager::eventManager(Terrain map)
 					if(map.getElem()[i]->getNom() == "Robot1")
 					{	
 						if(e.key.code == Keyboard::Q)
+						{
 							map.getElem()[i]->reoriente(-1);
+							map.getElem()[i]->deplace();
+							map.getElem()[i]->setImPos();
+						}
 						
 						if(e.key.code == Keyboard::D)
-							map.getElem()[i]->reoriente(1);
+						{
+							map.getElem()[i]->reoriente(-1);
+							map.getElem()[i]->deplace();
+							map.getElem()[i]->setImPos();
+						}
 					}
 					if(map.getElem()[i]->getNom() == "Robot2")
 					{	
 						if(e.key.code == Keyboard::J)
-							map.getElem()[i]->reoriente(-1);
+						{
+							map.getElem()[i]->reoriente(1);
+							map.getElem()[i]->deplace();
+							map.getElem()[i]->setImPos();
+						}
 						
 						if(e.key.code == Keyboard::L)
+						{
 							map.getElem()[i]->reoriente(1);
+							map.getElem()[i]->deplace();
+							map.getElem()[i]->setImPos();
+						}
 					}
 				}		
-					map.getElem()[i]->deplace();
-					map.getElem()[i]->setImPos();
+					
 					//cout << map.getElem()[i]->getPosition().x << " " << map.getElem()[i]->getPosition().y << endl;
-					window->clear(Color::Black);
 						
 					window->draw(map.getElem()[i]->getIm());
 				}
