@@ -35,7 +35,7 @@ Le robot au centre de l'écran :
 2. l pour tourner dans le sens horaire 
 3. k pour l'attaque 
 
-Pour le moment le jeu ne permet que d'avancer dans la map et gère les collisions. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale.
+Pour le moment le jeu ne permet que d'avancer dans la map. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale. La position des obstacles peut parfois être en partie à l'extérieur de la fenêtre et un dossier à part est ajouté par rapport aux collisions, non intégrées au code principale, car elles ne marchent pas tout à fait.
 
 ## Organisation
 Kevin s'est occupé des méthodes de déplacement et collisions
