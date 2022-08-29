@@ -1,16 +1,16 @@
-#include "Robot.hpp"
+#include "Missile.hpp"
 
-double constrain(double x, double a, double b){
-	return max(min(x,b),a);
+bool Missile::isColliding(MovingElt& e){
+    
 }
 
-void Robot::deplace(Terrain& map)
+void Missile::deplace(Terrain& map)
 {
 
-	double x = VITESSE * cos(orientation) +
+	double x = vitesse * cos(orientation) +
 					position.x;
 	
-	double y = VITESSE * sin(orientation) +
+	double y = vitesse * sin(orientation) +
 					position.y;
 
 	x = constrain(x,0,WIDTH-W_ROB);
@@ -50,23 +50,4 @@ void Robot::deplace(Terrain& map)
 			}
 			count++; 
 		}
-}
-
-/*void accelere(int sens){
-	if (sens == 1) vitesse+= ;
-	elif (sens == -1) vitesse -= ;
-
-	vitesse = constrain(vitesse, -V_MAX/2, V_MAX); 
-}*/
-
-void Robot::reoriente(int direction){
-
-	orientation += direction*VITESSE_ROTATION ;
-	//if (orientation > 360) orientation -= 360;
-	//else if (orientation < 360) orientation += 360;
-}
-
-void Robot::displayInWindow(SFMLManager& render)
-{
-	render.displayRobot(*this);
 }

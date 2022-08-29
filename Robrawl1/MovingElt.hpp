@@ -17,16 +17,21 @@ class MovingElt{
 		Sprite im;
 		string nom;
 		float orientation;
-
+		float vitesse;
 	public :
 		MovingElt(){};
 		MovingElt(Vector2f p, string n, float o) : position(p), nom(n), orientation(o){};
 		virtual ~MovingElt(){};
+
 		Vector2f getPosition(){ return position;}
-		virtual void reoriente(int) = 0;
-		virtual void deplace(Terrain& map) = 0;
-		Sprite getIm(){return im;}
+		float getVitesse(){return vitesse;}
 		float getOrientation(){return orientation;}
+
+		Sprite getIm(){return im;}
+
+		virtual void deplace(Terrain& map) = 0;
+		virtual void reoriente(int) = 0;
+		
 		void setIm(Texture* t)
 		{
 			im.setTexture(*t);

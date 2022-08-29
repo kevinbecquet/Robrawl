@@ -9,6 +9,8 @@
 SFMLManager::SFMLManager()
 {
 	window = new RenderWindow(VideoMode(WIDTH,HEIGHT),"Robrawl");
+	window->setFramerateLimit(60);
+
 	window->clear(Color::Black);
 	window->display();
 }
@@ -33,69 +35,53 @@ RenderWindow*& SFMLManager::getWindow()
 //Trois par joueurs et pour le moment 2 joueurs
 void SFMLManager::eventManager(Terrain map)
 {
-
-	cout << "Fermez la fenêtre pour finir le jeu" << endl;
-
-
 	Event e;
-	while(window->isOpen())
+
+	while(window->pollEvent(e))
 	{
-
-		while(window->pollEvent(e))
-		{
-			window->clear(Color::Black);
+		window->clear(Color::Black);
 
 
-				//key manager
-				if(e.type == Event::KeyPressed)
+			//key manager
+			if(e.type == Event::KeyPressed)
+			{
+				if(e.key.code == Keyboard::Q)
 				{
-					if(e.key.code == Keyboard::Q)
-					{
-						map.getElem()[0]->reoriente(1);
+					map.getElem()[0]->reoriente(-1);
 
-					}
-
-					if(e.key.code == Keyboard::D)
-					{
-						map.getElem()[0]->reoriente(-1);
-
-					}
-
-					if(e.key.code == Keyboard::J)
-					{
-						map.getElem()[1]->reoriente(1);
-
-					}
-
-					if(e.key.code == Keyboard::L)
-					{
-						map.getElem()[1]->reoriente(-1);
-
-					}
 				}
 
+				if(e.key.code == Keyboard::D)
+				{
+					map.getElem()[0]->reoriente(1);
 
+				}
 
-			if(e.type == Event::Closed || e.key.code == Keyboard::Escape)
-				window->close();
+				if(e.key.code == Keyboard::J)
+				{
+					map.getElem()[1]->reoriente(-1);
+
+				}
+
+				if(e.key.code == Keyboard::L)
+				{
+					map.getElem()[1]->reoriente(1);
+
+				}
 			}
 
-			window->clear();
+
+
+		if(e.type == Event::Closed || e.key.code == Keyboard::Escape)
+			window->close();
+		}
+
 			for(size_t i = 0; i < map.getElem().size(); i++)
 				{
 					map.getElem()[i]->deplace(map);
-					map.getElem()[i]->setImPos();
-
-
-					//cout << map.getElem()[i]->getPosition().x << " " << map.getElem()[i]->getPosition().y << endl;
-
-					window->draw(map.getElem()[i]->getIm());
+					map.getElem()[i]->setImPos();	
 				}
-			for(size_t i = 0; i < map.getObs().size(); i++)
-					window->draw(map.getObs()[i].getSprite());
-
-			window->display();
-		}
+			
 	}
 
 
@@ -103,23 +89,31 @@ void SFMLManager::displayRobot(Robot& rob)
 {
 
 	double o = rob.getOrientation();
-	double x = 10*VITESSE * cos(o) +
+	double x = VITESSE * cos(o) +
 					rob.getPosition().x;
-	double y = 10*VITESSE * sin(o) +
+	double y = VITESSE * sin(o) +
 					rob.getPosition().y;
 
-	CircleShape circle(10);
-	circle.setFillColor(Color::Blue);
-	circle.setPosition(Vector2f(x,y));
+	CircleShape nextPos(5);
+	nextPos.setFillColor(Color::White);
+	nextPos.setPosition(Vector2f(x,y));
 
 
-	window->draw(rob.getIm());
-	window->draw(circle);
-	window->display();
+	RectangleShape robBox;
+	robBox.setPosition(Vector2f(rob.getPosition().x,rob.getPosition().y));
+	robBox.setSize(Vector2f(W_ROB,H_ROB));
+	robBox.setFillColor(Color::Blue);
+
+
+	//window->draw(rob.getIm());
+	window->draw(robBox);
+	window->draw(nextPos);
+
+	
 }
 
 void SFMLManager::displayObstacle(Obstacle& obs)
-{
+{	
 	window->draw(obs.getSprite());
-	window->display();
+	
 }

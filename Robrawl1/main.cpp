@@ -19,22 +19,13 @@ int main()
 	//Random position pour les obstacles
 	srand(time(NULL));
 	Vector2f pos;
-	vector<Vector2f> position;
+	
 	//Chargement des images
-	vector<Texture*> t = loadObstacles(10);
+	vector<Texture*> t = loadObstacles(1);
 	for(size_t i = 0; i < t.size(); i++)
 	{
-		//Vérifier que les obstacles ne sont pas en même position
-		do
-		{
-			//Fixer la position
-			pos.x = rand()%(WIDTH-98);
-			pos.y = rand()%(HEIGHT-146);
-
-		}while(!check_pos(position,pos));
-
-		//L'insérer si il n'y est pas
-		position.push_back(pos);
+		pos.x = WIDTH/2;
+		pos.y = 250;
 		//Création de l'objet obstacle
 		Obstacle o(t[i],pos);
 		cout << "Position de l'obstacle n° " << i+1 << ":" << o.getPosition().x << " " << o.getPosition().y << endl;
@@ -57,13 +48,16 @@ int main()
 
 	cout << map.getElem().size() << endl;
 
+	while(render.getWindow()->isOpen())
+	{	
+		render.eventManager(map);
 
-	map.displayInWindow(render);
-	//Gérer le déplacement
+		map.displayInWindow(render);
+		
 
 
-	render.eventManager(map);
-
+		
+	}
 
 
 

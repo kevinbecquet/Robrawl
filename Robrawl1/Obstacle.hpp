@@ -6,8 +6,8 @@
 
 #define scaleFactor 0.25
 
-#define H_OBS 50
-#define W_OBS 50
+#define H_OBS 36
+#define W_OBS 24
 using namespace sf;
 
 

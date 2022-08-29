@@ -17,12 +17,14 @@ void Terrain::ajout(Obstacle o)
 //Premier affichage dans la map
 void Terrain::displayInWindow(SFMLManager& render)
 {
-	for(size_t i =0; i < elem.size(); i++)
-		elem[i]->displayInWindow(render);
+	render.getWindow()->clear();
 
 	for(size_t i =0; i < obs.size(); i++)
 		obs[i].displayInWindow(render);
 
+	for(size_t i =0; i < elem.size(); i++)
+		elem[i]->displayInWindow(render);
+	render.getWindow()->display();
 }
 
 //Chargement des textures - des images obstacles
