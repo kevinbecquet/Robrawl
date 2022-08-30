@@ -18,14 +18,27 @@ class MovingElt{
 		string nom;
 		float orientation;
 		float vitesse;
+		int height;
+		int width;
+
 	public :
 		MovingElt(){};
-		MovingElt(Vector2f p, string n, float o) : position(p), nom(n), orientation(o){};
+		
+		MovingElt(Vector2f p, string n, float o,int h, int w) : 
+					position(p), 
+					nom(n), 
+					orientation(o),
+					height(h),
+					width(w)
+					{};
+
 		virtual ~MovingElt(){};
 
 		Vector2f getPosition(){ return position;}
 		float getVitesse(){return vitesse;}
 		float getOrientation(){return orientation;}
+		int getHeight(){return height;}
+		int getWidth(){return width;}
 
 		Sprite getIm(){return im;}
 

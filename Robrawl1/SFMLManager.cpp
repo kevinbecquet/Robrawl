@@ -105,7 +105,7 @@ void SFMLManager::displayRobot(Robot& rob)
 	robBox.setFillColor(Color::Blue);
 
 
-	//window->draw(rob.getIm());
+	window->draw(rob.getIm());
 	window->draw(robBox);
 	window->draw(nextPos);
 
