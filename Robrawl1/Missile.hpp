@@ -12,10 +12,15 @@
 class Missile : public MovingElt
 {
 
-void deplace(Terrain& map);
-bool Missile::isColliding(MovingElt& e);
+    private:
+        int dmg;
+    
+    public:
+        
+        void deplace(Terrain& map);
+        bool isColliding(MovingElt& e);
 
-void displayInWindow(SFMLManager&);
+        void displayInWindow(SFMLManager&);
 };
 
 #endif

@@ -27,6 +27,7 @@ void Terrain::displayInWindow(SFMLManager& render)
 	render.getWindow()->display();
 }
 
+
 //Chargement des textures - des images obstacles
 vector<Texture*> loadObstacles(int n)
 {
@@ -81,11 +82,10 @@ vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt)
 		im = new Image;
 		texture = new Texture;
 
-		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,10,25,25);
+		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,10,52,52);
 		cout << start_pt[i].x << " " << start_pt[i].y << endl;
 		im->loadFromFile("Image/Robots/robot"+to_string(i+1)+".png");
-		im->createMaskFromColor(Color::White);
-		im->createMaskFromColor(color);
+		
 		texture->loadFromImage(*im);
 		rob->setIm(texture);
 		rob->setImPos(start_pt[i]);

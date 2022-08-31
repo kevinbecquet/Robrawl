@@ -13,34 +13,44 @@ using namespace sf;
 class MovingElt{
 
 	protected :
-		Vector2f position;
 		Sprite im;
 		string nom;
-		float orientation;
-		float vitesse;
+		int vie;
 		int height;
 		int width;
+		
 
+		Vector2f position;
+		float orientation;
+		float vitesse;
+		
 	public :
 		MovingElt(){};
 		
-		MovingElt(Vector2f p, string n, float o,int h, int w) : 
+		MovingElt(Vector2f p, string n, float o,int v,int h, int w) : 
 					position(p), 
 					nom(n), 
 					orientation(o),
+					vie(v),
 					height(h),
 					width(w)
 					{};
 
 		virtual ~MovingElt(){};
+		
+		int getVie(){return vie;}
 
 		Vector2f getPosition(){ return position;}
 		float getVitesse(){return vitesse;}
 		float getOrientation(){return orientation;}
+		
 		int getHeight(){return height;}
 		int getWidth(){return width;}
-
+		
 		Sprite getIm(){return im;}
+
+		void setVie(int hp){ vie = hp; }
+		
 
 		virtual void deplace(Terrain& map) = 0;
 		virtual void reoriente(int) = 0;
@@ -49,9 +59,16 @@ class MovingElt{
 		{
 			im.setTexture(*t);
 			im.scale(Vector2f(ScaleFactor,ScaleFactor));
+			
+			im.setOrigin(Vector2f(width/2,height/2));
+			im.move(Vector2f(width/2,height/2));
 		}
 		void setImPos()
 		{
+			Vector2f pos;
+			pos.x = position.x ;
+			pos.y = position.y ;
+
 			im.setPosition(this->position);
 		}
 		void setImPos(Vector2f init_pos)

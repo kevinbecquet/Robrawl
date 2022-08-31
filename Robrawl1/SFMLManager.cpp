@@ -37,79 +37,61 @@ void SFMLManager::eventManager(Terrain map)
 {
 	Event e;
 
-	while(window->pollEvent(e))
+	window->pollEvent(e);
+		
+	//key manager
+
+	if(e.type == Event::KeyPressed && e.key.code == Keyboard::Q)
 	{
-		window->clear(Color::Black);
+		map.getElem()[0]->reoriente(-1);
 
-
-			//key manager
-			if(e.type == Event::KeyPressed)
-			{
-				if(e.key.code == Keyboard::Q)
-				{
-					map.getElem()[0]->reoriente(-1);
-
-				}
-
-				if(e.key.code == Keyboard::D)
-				{
-					map.getElem()[0]->reoriente(1);
-
-				}
-
-				if(e.key.code == Keyboard::J)
-				{
-					map.getElem()[1]->reoriente(-1);
-
-				}
-
-				if(e.key.code == Keyboard::L)
-				{
-					map.getElem()[1]->reoriente(1);
-
-				}
-			}
-
-
-
-		if(e.type == Event::Closed || e.key.code == Keyboard::Escape)
-			window->close();
-		}
-
-			for(size_t i = 0; i < map.getElem().size(); i++)
-				{
-					map.getElem()[i]->deplace(map);
-					map.getElem()[i]->setImPos();	
-				}
-			
 	}
 
+	if(e.type == Event::KeyPressed && e.key.code == Keyboard::D)
+	{
+		map.getElem()[0]->reoriente(1);
+
+	}
+
+	if(e.type == Event::KeyPressed && e.key.code == Keyboard::J)
+	{
+		map.getElem()[1]->reoriente(-1);
+
+	}
+
+	if(e.type == Event::KeyPressed && e.key.code == Keyboard::L)
+	{
+		map.getElem()[1]->reoriente(1);
+
+	}
+	
+	if(e.type == Event::Closed || e.key.code == Keyboard::Escape)
+		window->close();
+	
+
+	for(size_t i = 0; i < map.getElem().size(); i++)
+		{
+			map.getElem()[i]->deplace(map);
+			map.getElem()[i]->setImPos();	
+		}
+}			
+	
+void addOffsetImg(Sprite &object, const sf::Vector2f &offset)
+{
+        auto newOrigin = offset + object.getOrigin();
+        object.setOrigin(newOrigin);
+        object.move(offset);
+}
 
 void SFMLManager::displayRobot(Robot& rob)
 {
 
-	double o = rob.getOrientation();
-	double x = VITESSE * cos(o) +
-					rob.getPosition().x;
-	double y = VITESSE * sin(o) +
-					rob.getPosition().y;
+	Sprite robImage = rob.getIm();
+	robImage.setOrigin(rob.getWidth(),rob.getHeight());
+	robImage.move(rob.getWidth()/2,rob.getHeight()/2);
+	robImage.setRotation(rob.getOrientation()*180/M_PI);
 
-	CircleShape nextPos(5);
-	nextPos.setFillColor(Color::White);
-	nextPos.setPosition(Vector2f(x,y));
-
-
-	RectangleShape robBox;
-	robBox.setPosition(Vector2f(rob.getPosition().x,rob.getPosition().y));
-	robBox.setSize(Vector2f(W_ROB,H_ROB));
-	robBox.setFillColor(Color::Blue);
-
-
-	window->draw(rob.getIm());
-	window->draw(robBox);
-	window->draw(nextPos);
-
-	
+	window->draw(robImage);	
 }
 
 void SFMLManager::displayObstacle(Obstacle& obs)

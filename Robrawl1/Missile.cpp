@@ -1,7 +1,20 @@
 #include "Missile.hpp"
 
-bool Missile::isColliding(MovingElt& e){
-    
+void Missile::damage(MovingElt& elt){
+	int hpElt = elt.getVie();
+	hpElt -= dmg;
+	elt.setVie(hpElt); 
+}
+
+bool Missile::isColliding(MovingElt& elt){
+    int seuilX = width+elt.getWidth();
+	int seuilY = height+elt.getHeight();
+	
+	Vector2f pElt = elt.getPosition();
+	if (abs(position.x - (pElt.x - elt.getWidth()))<seuilX &&
+		abs(position.y - pElt.y - elt.getHeight())<seuilY){
+
+		}
 }
 
 void Missile::deplace(Terrain& map)
@@ -13,8 +26,7 @@ void Missile::deplace(Terrain& map)
 	double y = vitesse * sin(orientation) +
 					position.y;
 
-	x = constrain(x,0,WIDTH-W_ROB);
-	y = constrain(y,0,HEIGHT-H_ROB);
+	
 	int count = 0; 
 		for(Obstacle obs: map.getObs()){
 			Vector2f pObs = obs.getPosition() + Vector2f(W_OBS/2,H_OBS/2);

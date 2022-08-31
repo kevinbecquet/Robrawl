@@ -17,21 +17,19 @@ using namespace std;
 #define H_ROB 25
 #define W_ROB 25
 
-#define SEUIL_X (W_ROB+W_OBS)/2
-#define SEUIL_Y (H_ROB+H_OBS)/2
+#define SEUIL_X (W_ROB+W_OBS)
+#define SEUIL_Y (H_ROB+H_OBS)
 
 class Robot : public MovingElt
 {
-	private :
-		int vie;
 
 	public :
 
 		Robot();
 		//constructeur classique
 		Robot(Vector2f p, string n, float o, int v,int h, int w) : 
-				MovingElt(p,n,o,h,w),
-				vie(v){};
+				MovingElt(p,n,o,v,h,w){};
+				
 				
 		//Constructeur par copie
 		Robot(const Robot& r)
@@ -61,7 +59,6 @@ class Robot : public MovingElt
 
 		//chaque robot a son attaque
 		//virtual void attaque() = 0;
-		
         void displayInWindow(SFMLManager& s);
 };
 

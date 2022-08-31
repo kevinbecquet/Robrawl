@@ -4,8 +4,12 @@ double constrain(double x, double a, double b){
 	return max(min(x,b),a);
 }
 
+
+
 void Robot::deplace(Terrain& map)
-{
+{	
+	int width = getWidth();
+	int height = getHeight();
 
 	double x = VITESSE * cos(orientation) +
 					position.x;
@@ -13,8 +17,9 @@ void Robot::deplace(Terrain& map)
 	double y = VITESSE * sin(orientation) +
 					position.y;
 
-	x = constrain(x,0,WIDTH-W_ROB);
-	y = constrain(y,0,HEIGHT-H_ROB);
+	x = constrain(x,0,WIDTH-width);
+	y = constrain(y,0,HEIGHT-height);
+
 	int count = 0; 
 		for(Obstacle obs: map.getObs()){
 			Vector2f pObs = obs.getPosition() + Vector2f(W_OBS/2,H_OBS/2);
@@ -22,25 +27,19 @@ void Robot::deplace(Terrain& map)
 			
 
 
-			if((abs((x)-(pObs.x))<SEUIL_X) && 
-			   (abs((y)-(pObs.y))<SEUIL_Y))
+			if((abs((x)-(pObs.x-obs.getWidth()))<SEUIL_X) && 
+			   (abs((y)-(pObs.y-obs.getHeight()))<SEUIL_Y))
 			// if((abs((x)-(pObs.x))<SEUIL_X) && 
 			//    (abs((y)-(pObs.y))<SEUIL_Y))
-			{
-				printf("Collides : %f,%f |%d,%d  ! \n",
-						(abs((x+W_ROB/2)-(pObs.x+W_OBS/2))),
-						(abs((y+H_ROB/2)-(pObs.y+H_OBS/2))),
-						SEUIL_X,
-						SEUIL_Y);
-				
+			{				
 
-				if( abs((x)-(pObs.x))>SEUIL_X ||
-					abs((position.y)-(pObs.y))>SEUIL_Y)
+				if( abs((x)-(pObs.x-obs.getWidth()))>SEUIL_X ||
+					abs((position.y)-(pObs.y-obs.getHeight()))>SEUIL_Y)
 				
 					position.x = x;
 				
-				if( abs(y)-(pObs.y)>SEUIL_Y ||
-					abs((position.x)-(pObs.x))>SEUIL_X)
+				if( abs(y)-(pObs.y-obs.getHeight())>SEUIL_Y ||
+					abs((position.x)-(pObs.x-obs.getWidth()))>SEUIL_X)
 					
 					position.y = y;
 			}
@@ -62,8 +61,7 @@ void Robot::deplace(Terrain& map)
 void Robot::reoriente(int direction){
 
 	orientation += direction*VITESSE_ROTATION ;
-	//if (orientation > 360) orientation -= 360;
-	//else if (orientation < 360) orientation += 360;
+	
 }
 
 void Robot::displayInWindow(SFMLManager& render)
