@@ -7,59 +7,36 @@ void Missile::damage(MovingElt& elt){
 }
 
 bool Missile::isColliding(MovingElt& elt){
-    int seuilX = width+elt.getWidth();
-	int seuilY = height+elt.getHeight();
+    int seuilX = width+elt.getWidth()/2;
+	int seuilY = height+elt.getHeight()/2;
 	
 	Vector2f pElt = elt.getPosition();
-	if (abs(position.x - (pElt.x - elt.getWidth()))<seuilX &&
-		abs(position.y - pElt.y - elt.getHeight())<seuilY){
-
-		}
+	if (abs((position.x+width/2) - (pElt.x + elt.getWidth()/2))<seuilX &&
+		abs((position.y+height/2) - (pElt.y + elt.getHeight()/2))<seuilY){
+		
+		dmg = 0; // the missile is destroyed 
+		damage(elt); // it damages the object in contact 
+		return true;	
+	}
+	return false;
 }
 
 void Missile::deplace(Terrain& map)
 {
 
-	double x = vitesse * cos(orientation) +
-					position.x;
+	double x = vitesse * cos(orientation) + position.x;
 	
-	double y = vitesse * sin(orientation) +
-					position.y;
+	double y = vitesse * sin(orientation) + position.y;
+
+	bool explodes = false;
+	
+	for(Obstacle obs: map.getObs()){
+		
+		
+		
+
 
 	
-	int count = 0; 
-		for(Obstacle obs: map.getObs()){
-			Vector2f pObs = obs.getPosition() + Vector2f(W_OBS/2,H_OBS/2);
-
-			
-
-
-			if((abs((x)-(pObs.x))<SEUIL_X) && 
-			   (abs((y)-(pObs.y))<SEUIL_Y))
-			// if((abs((x)-(pObs.x))<SEUIL_X) && 
-			//    (abs((y)-(pObs.y))<SEUIL_Y))
-			{
-				printf("Collides : %f,%f |%d,%d  ! \n",
-						(abs((x+W_ROB/2)-(pObs.x+W_OBS/2))),
-						(abs((y+H_ROB/2)-(pObs.y+H_OBS/2))),
-						SEUIL_X,
-						SEUIL_Y);
-				
-
-				if( abs((x)-(pObs.x))>SEUIL_X ||
-					abs((position.y)-(pObs.y))>SEUIL_Y)
-				
-					position.x = x;
-				
-				if( abs(y)-(pObs.y)>SEUIL_Y ||
-					abs((position.x)-(pObs.x))>SEUIL_X)
-					
-					position.y = y;
-			}
-			else{
-				position.x = x;
-				position.y = y;
-			}
-			count++; 
-		}
+		
+	}
 }

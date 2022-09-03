@@ -6,8 +6,8 @@ double constrain(double x, double a, double b){
 
 
 
-void Robot::deplace(Terrain& map)
-{	
+void Robot::deplace(Terrain& map){
+
 	int width = getWidth();
 	int height = getHeight();
 
@@ -22,24 +22,20 @@ void Robot::deplace(Terrain& map)
 
 	int count = 0; 
 		for(Obstacle obs: map.getObs()){
-			Vector2f pObs = obs.getPosition() + Vector2f(W_OBS/2,H_OBS/2);
+			Vector2f pObs = obs.getPosition();
 
 			
-
-
-			if((abs((x)-(pObs.x-obs.getWidth()))<SEUIL_X) && 
-			   (abs((y)-(pObs.y-obs.getHeight()))<SEUIL_Y))
-			// if((abs((x)-(pObs.x))<SEUIL_X) && 
-			//    (abs((y)-(pObs.y))<SEUIL_Y))
+			if((abs((x+width/2)-(pObs.x+obs.getWidth()/2))<SEUIL_X) && 
+			   (abs((y+height/2)-(pObs.y+obs.getHeight()/2))<SEUIL_Y))
 			{				
 
-				if( abs((x)-(pObs.x-obs.getWidth()))>SEUIL_X ||
-					abs((position.y)-(pObs.y-obs.getHeight()))>SEUIL_Y)
+				if( abs((x+width/2)-(pObs.x+obs.getWidth()/2))>SEUIL_X ||
+					abs((position.y+height/2)-(pObs.y-obs.getHeight()/2))>SEUIL_Y)
 				
 					position.x = x;
 				
-				if( abs(y)-(pObs.y-obs.getHeight())>SEUIL_Y ||
-					abs((position.x)-(pObs.x-obs.getWidth()))>SEUIL_X)
+				if( abs((y+height/2)-(pObs.y+obs.getHeight()/2))>SEUIL_Y ||
+					abs((position.x+width/2)-(pObs.x-obs.getWidth()/2))>SEUIL_X)
 					
 					position.y = y;
 			}

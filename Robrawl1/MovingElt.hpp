@@ -14,14 +14,12 @@ class MovingElt{
 
 	protected :
 		Sprite im;
+		Vector2f position;
 		string nom;
+		float orientation;
 		int vie;
 		int height;
 		int width;
-		
-
-		Vector2f position;
-		float orientation;
 		float vitesse;
 		
 	public :
