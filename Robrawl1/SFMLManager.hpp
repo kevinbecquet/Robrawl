@@ -8,6 +8,8 @@
 class Obstacle;
 class Robot;
 class Terrain;
+class Missile;
+
 
 #define WIDTH 800
 #define HEIGHT 500
@@ -23,10 +25,10 @@ class SFMLManager{
 		SFMLManager();
 		~SFMLManager();
 		RenderWindow*& getWindow();
-		void eventManager(Terrain map);
+		void eventManager(Terrain& map);
 		void displayRobot(Robot& rob);
 		void displayObstacle(Obstacle& obs);
-
+		void displayMissile(Missile& mis);
 };
 
 #endif

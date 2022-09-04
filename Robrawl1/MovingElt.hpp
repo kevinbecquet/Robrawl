@@ -20,61 +20,47 @@ class MovingElt{
 		int vie;
 		int height;
 		int width;
-		float vitesse;
+		int vitesse;
 		
 	public :
-		MovingElt(){};
+		MovingElt(){}
 		
-		MovingElt(Vector2f p, string n, float o,int v,int h, int w) : 
+		MovingElt(Vector2f p, string n, float o,int v,int h, int w,int vit): 
 					position(p), 
 					nom(n), 
 					orientation(o),
 					vie(v),
 					height(h),
-					width(w)
-					{};
+					width(w),
+					vitesse(vit){};
 
-		virtual ~MovingElt(){};
+		virtual ~MovingElt();
 		
-		int getVie(){return vie;}
+		int getVie();
 
-		Vector2f getPosition(){ return position;}
-		float getVitesse(){return vitesse;}
-		float getOrientation(){return orientation;}
+		Vector2f getPosition();
+		float getVitesse();
+		float getOrientation();
 		
-		int getHeight(){return height;}
-		int getWidth(){return width;}
+		int getHeight();
+		int getWidth();
 		
-		Sprite getIm(){return im;}
+		Sprite getIm();
 
-		void setVie(int hp){ vie = hp; }
+		void setVie(int hp);
 		
 
 		virtual void deplace(Terrain& map) = 0;
 		virtual void reoriente(int) = 0;
+		virtual void attaque(Terrain& map) = 0;
 		
-		void setIm(Texture* t)
-		{
-			im.setTexture(*t);
-			im.scale(Vector2f(ScaleFactor,ScaleFactor));
-			
-			im.setOrigin(Vector2f(width/2,height/2));
-			im.move(Vector2f(width/2,height/2));
-		}
-		void setImPos()
-		{
-			Vector2f pos;
-			pos.x = position.x ;
-			pos.y = position.y ;
+		void setIm(Texture* t);
 
-			im.setPosition(this->position);
-		}
-		void setImPos(Vector2f init_pos)
-		{
-			im.setPosition(init_pos);
-		}
+		void setImPos();
+		void setImPos(Vector2f init_pos);
+		
 		virtual void displayInWindow(SFMLManager&) =0;
-		string getNom(){return nom;}
+		string getNom();
 };
 
 #endif

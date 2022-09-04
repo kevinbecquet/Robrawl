@@ -5,14 +5,15 @@
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
+
 #include "MovingElt.hpp"
 #include "Terrain.hpp"
+#include "Missile.hpp"
 
 using namespace sf;
 using namespace std;
 
-#define VITESSE 1
-#define VITESSE_ROTATION M_PI/60
+#define VITESSE_ROTATION M_PI/80
 
 #define H_ROB 25
 #define W_ROB 25
@@ -22,13 +23,14 @@ using namespace std;
 
 class Robot : public MovingElt
 {
-
+	private :
+	int countdown = 0;
 	public :
 
 		Robot();
 		//constructeur classique
 		Robot(Vector2f p, string n, float o, int v,int h, int w) : 
-				MovingElt(p,n,o,v,h,w){};
+				MovingElt(p,n,o,v,h,w,1){};
 				
 				
 		//Constructeur par copie
@@ -52,13 +54,12 @@ class Robot : public MovingElt
 		//déplace le robot suivant X et Y
 		void deplace(Terrain& map);
 
-		//Reoriente le robot en affichant une fleche qui tourne sur 180° à droite ou à gauche
+		//Modifie l'orietation du robot dans la direction indiquée (positive ou negative)
 		void reoriente(int direction);
 
-		void accelere(int sens);
+		void attaque(Terrain& map);
+		Missile* launchMissile(Terrain& map);
 
-		//chaque robot a son attaque
-		//virtual void attaque() = 0;
         void displayInWindow(SFMLManager& s);
 };
 

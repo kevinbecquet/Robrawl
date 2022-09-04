@@ -10,7 +10,7 @@ int main()
 
 
 	//Création d'une map
-	Terrain map;
+	Terrain* map = new Terrain();
 	//Gestion de l'affichage
 	SFMLManager render;
 
@@ -30,7 +30,7 @@ int main()
 		Obstacle o(t[i],pos,36,24);
 		cout << "Position de l'obstacle n° " << i+1 << ":" << o.getPosition().x << " " << o.getPosition().y << endl;
 		//Ajout dans la map
-		map.ajout(o);
+		map->ajout(o);
 	}
 
 	//S'occuper des deux robots
@@ -40,19 +40,19 @@ int main()
 	start_pt.push_back(start1);
 	start_pt.push_back(start2);
 
-	vector<Robot*> rob;
+	
 	Robot* robot;
-	rob = loadRobot(robot, start_pt);
+	vector<Robot*> rob = loadRobot(robot, start_pt);
 	for(Robot* r : rob)
-		map.ajout(r);
+		map->ajout(r);
 
-	cout << map.getElem().size() << endl;
+	cout << map->getElem().size() << endl;
 
 	while(render.getWindow()->isOpen())
 	{	
-		render.eventManager(map);
-
-		map.displayInWindow(render);
+		render.eventManager(*map);
+		map->action();
+		map->displayInWindow(render);
 	
 	}
 

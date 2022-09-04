@@ -1,11 +1,10 @@
 #include "Terrain.hpp"
-#include "Obstacle.hpp"
-#include "Robot.hpp"
 
 //Ajouter des élements mobiles ou obstacles dans le terrain (map) - surcharge
 void Terrain::ajout(MovingElt* e)
 {
 	elem.push_back(e);
+	
 }
 
 
@@ -14,16 +13,43 @@ void Terrain::ajout(Obstacle o)
 	obs.push_back(o);
 }
 
+int Terrain:: addMissile(){
+	countMissile++;
+	return countMissile;
+}
+
+void Terrain:: supprElem(){
+	for(int i = 0; i< elem.size();i++){
+		if(elem[i]->getVie() <= 0){
+			elem.erase(elem.begin()+i);
+			
+			//delete elem[i];
+		} 
+	}
+}
+
+void Terrain::action(){
+	for(MovingElt* elt : elem){
+
+		elt->deplace(*this);
+		elt->setImPos();	
+	}
+	supprElem();
+}
+
 //Premier affichage dans la map
 void Terrain::displayInWindow(SFMLManager& render)
 {
 	render.getWindow()->clear();
 
-	for(size_t i =0; i < obs.size(); i++)
-		obs[i].displayInWindow(render);
+	for(Obstacle o : obs)
+		o.displayInWindow(render);
 
-	for(size_t i =0; i < elem.size(); i++)
-		elem[i]->displayInWindow(render);
+	for(MovingElt* elt: elem){
+		elt->displayInWindow(render);
+		//cout << elt->getNom()+"ok";
+	}
+	// cout << endl;
 	render.getWindow()->display();
 }
 
@@ -34,8 +60,6 @@ vector<Texture*> loadObstacles(int n)
 	vector<Texture*> texture;
 	Image* im;
 	Texture* t;
-
-
 
 	for(int i = 0 ; i< n; ++i)
 	{
@@ -82,8 +106,8 @@ vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt)
 		im = new Image;
 		texture = new Texture;
 
-		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,10,52,52);
-		cout << start_pt[i].x << " " << start_pt[i].y << endl;
+		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,20,52,52);
+		
 		im->loadFromFile("Image/Robots/robot"+to_string(i+1)+".png");
 		
 		texture->loadFromImage(*im);
@@ -96,3 +120,4 @@ vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt)
 
 	return robot;
 }
+
