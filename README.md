@@ -1,11 +1,11 @@
 # Robrawl ( remake)
 
 Deux vaisseaux spaciaux ennemis poursuivent le même but: anéantir son opposant ! 
-Pour y parvenir, ils pourront lancer des missiles dans le but de se toucher. Si un vaisseau se fait toucher par 5 missiles au total, il est éliminé.
+Pour y parvenir, ils pourront lancer des missiles dans le but d'endommager le vaisseau adverse. Si un vaisseau se fait toucher par 5 missiles au total, il est éliminé.
 
 ## Installation et usage
 
-Pour installer ce jeu, il faudra au préalable installer la bibliotèque **SFML** utilisée pour l'affichage graphique et la gestion d'événements clavier:
+Pour installer ce jeu, il faudra au préalable installer la bibliothèque **SFML** utilisée pour l'affichage graphique et la gestion d'événements clavier:
 ```
 sudo apt-get install libsml-dev
 ```
