@@ -7,27 +7,41 @@ void Terrain::ajout(MovingElt* e)
 	
 }
 
+// Retourne vrai si un des deux robots est vaincu
+bool Terrain::victoryCheck(){
+	//si l'un des robots est vaincu, il quitte la liste des MovingElt
+	// cette liste est donc soit de taille 1 s'il ne reste que le robot gagnant (pas de missile sur le terrain)
+	//soit le 2ème element de cette liste est un missile 
+	if(elem.size() == 1 || elem[1]->getNom() != "robot2"){
+		cout<<"Vainqueur: "+ elem[0]->getNom()<<endl;
+		return true;
+	}
+	return false;
+}
 
+//Ajoute un obstacle au vecteur d'obstacle
 void Terrain::ajout(Obstacle o)
 {
 	obs.push_back(o);
 }
 
+// Incremente le compteur de missile et retourne sa valeur
 int Terrain:: addMissile(){
 	countMissile++;
 	return countMissile;
 }
 
+// Supprime tous les MovingElt n'ayant plus de vie 
 void Terrain:: supprElem(){
-	for(int i = 0; i< elem.size();i++){
+
+	for(int i = elem.size()-1; i>=0 ;--i){
 		if(elem[i]->getVie() <= 0){
 			elem.erase(elem.begin()+i);
-			
-			//delete elem[i];
-		} 
-	}
-}
 
+		} 
+	}	
+}
+// Execute une itération d'action : déplace les elements et supprime ceux qui sont "mort"
 void Terrain::action(){
 	for(MovingElt* elt : elem){
 
@@ -37,87 +51,69 @@ void Terrain::action(){
 	supprElem();
 }
 
-//Premier affichage dans la map
-void Terrain::displayInWindow(SFMLManager& render)
-{
-	render.getWindow()->clear();
-
-	for(Obstacle o : obs)
-		o.displayInWindow(render);
-
-	for(MovingElt* elt: elem){
-		elt->displayInWindow(render);
-		//cout << elt->getNom()+"ok";
-	}
-	// cout << endl;
-	render.getWindow()->display();
+// Charge une image dont le chemin d'accès est indiqué dans une texture
+Texture* loadImg(string path){
+	Image im;
+	Texture* t = new Texture;
+	im.loadFromFile(path);
+	t->loadFromImage(im);
+	return t;
 }
 
 
-//Chargement des textures - des images obstacles
-vector<Texture*> loadObstacles(int n)
-{
-	vector<Texture*> texture;
-	Image* im;
-	Texture* t;
-
-	for(int i = 0 ; i< n; ++i)
-	{
-		im = new Image;
-		t = new Texture;
+//Chargement des obstacles dans la map
+void Terrain::loadObstacles(){
 	
-		if(!im->loadFromFile("Image/Obstacles/Box.png"))
-		{
-			cout << "Failed to load image" << endl;
-		}
-		else
-		{
-			t->loadFromImage(*im);
-			texture.push_back(t);
-		}
-	}
-	return texture;
-}
-
-//Faire en sorte que les différents obstacles ne se trouvent pas à la même position
-bool check_pos(vector<Vector2f> position, Vector2f pos)
-{
-	for(Vector2f p : position)
+	//Position des obstacles
+	vector<Vector2f> pos;
+	Vector2f pos1(WIDTH/2,250);
+	pos.push_back(pos1);
+	pos1 = Vector2f(120,300);
+	pos.push_back(pos1);
+	pos1 = Vector2f(600,100);
+	pos.push_back(pos1);		
+	pos1 = Vector2f(240,120);
+	pos.push_back(pos1);		
+	
+	for(int i = 0 ; i< pos.size(); ++i)
 	{
-		if(p == pos)
-			return false;
+		Texture* t = loadImg("Image/asteroide.jpeg");
+
+		//Création de l'objet obstacle
+		Obstacle o(t,pos[i],65,24);
+
+		//Ajout dans la map
+		ajout(o);
+			
 	}
-	return true;
+	
 }
 
-vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt)
-{
-//Les positions initiales
+// Chargement des Robot dans la map
+void Terrain::loadRobot(){
+
+//Positions initiales des Robots
+
+	vector<Vector2f> start_pt;
+	Vector2f start1(100,50);
+	Vector2f start2(200,200);
+	start_pt.push_back(start1);
+	start_pt.push_back(start2);
 
 	Texture* texture;
-	Image* im;
-	vector<Robot*> robot;
+	Robot* rob;
 
-	Color color(220,220,220); //grey
-	////Créer robot1
 	for(int i = 0; i < 2 ; i++)
-	{
-		/////////////////
-		im = new Image;
-		texture = new Texture;
-
-		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,20,52,52);
+	{	
+		// creation d'un Robot
+		rob = new Robot(start_pt[i],"robot"+to_string(i+1),0,5,52,52);
 		
-		im->loadFromFile("Image/Robots/robot"+to_string(i+1)+".png");
-		
-		texture->loadFromImage(*im);
+		texture = loadImg("Image/robot"+to_string(i+1)+".png");
 		rob->setIm(texture);
-		rob->setImPos(start_pt[i]);
+		rob->setImPos();
 
-
-		robot.push_back(rob);
+		//Ajout dans la map
+		ajout(rob);
 	}
-
-	return robot;
 }
 

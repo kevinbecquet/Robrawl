@@ -2,7 +2,7 @@
 #define MOVING_MovingElt
 
 #include "SFMLManager.hpp"
-#include <memory>
+
 #define ScaleFactor 0.3
 
 using namespace std;
@@ -36,31 +36,27 @@ class MovingElt{
 
 		virtual ~MovingElt();
 		
+		Sprite getIm();
+		string getNom();
 		int getVie();
 
 		Vector2f getPosition();
-		float getVitesse();
 		float getOrientation();
 		
 		int getHeight();
 		int getWidth();
 		
-		Sprite getIm();
-
 		void setVie(int hp);
 		
+		void setIm(Texture* t);
+		void setImPos();
 
 		virtual void deplace(Terrain& map) = 0;
 		virtual void reoriente(int) = 0;
 		virtual void attaque(Terrain& map) = 0;
 		
-		void setIm(Texture* t);
-
-		void setImPos();
-		void setImPos(Vector2f init_pos);
-		
 		virtual void displayInWindow(SFMLManager&) =0;
-		string getNom();
+		
 };
 
 #endif

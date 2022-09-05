@@ -1,9 +1,7 @@
 #ifndef SFML
 #define SFML
 
-
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 class Obstacle;
 class Robot;
@@ -25,10 +23,15 @@ class SFMLManager{
 		SFMLManager();
 		~SFMLManager();
 		RenderWindow*& getWindow();
+
 		void eventManager(Terrain& map);
+
 		void displayRobot(Robot& rob);
 		void displayObstacle(Obstacle& obs);
 		void displayMissile(Missile& mis);
+
+		void displayWindow(Terrain& map);
+
 };
 
 #endif

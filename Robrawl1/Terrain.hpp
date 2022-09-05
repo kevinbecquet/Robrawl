@@ -1,6 +1,9 @@
 #ifndef TERRAIN
 #define TERRAIN
 
+#include <iostream>
+#include <time.h>
+
 #include "MovingElt.hpp"
 #include "Obstacle.hpp"
 #include "Robot.hpp"
@@ -17,20 +20,22 @@ class Terrain
 		void ajout(MovingElt* e);
 		void ajout(Obstacle o);
 
+		void loadRobot();
+		void loadObstacles();
+
 		int addMissile();
 		void supprElem();
 
 		vector<Obstacle> getObs(){return obs;}
 		vector<MovingElt*> getElem(){ return elem;}
 
-		void displayInWindow(SFMLManager& render);
 		void action();
+
+		bool victoryCheck();
 
 };
 
-vector<Texture*> loadObstacles(int n);
-bool check_pos(vector<Vector2f> position, Vector2f pos);
-vector<Robot*> loadRobot(Robot* rob, vector<Vector2f> start_pt);
+Texture* loadImg(string path);
 
 
 

@@ -1,56 +1,32 @@
-# Robrawl Game
-Ce jeu consiste en une bataille de deux robots, dans un terrain avec des obstacles. Ces robots
-se lancent des missiles, et celui qui perd le plus de points meurt.
+# Robrawl ( version finale)
 
-L'intégration d'une IA serait possible en remplaçant les entrées clavier du deuxième joueur 
-par des décisions faite par cette dernière.
+Deux vaisseaux spaciaux ennemis poursuivent le même but: anéantir son opposant ! 
+Pour y parvenir, ils pourront lancer des missiles dans le but de se toucher. Si un vaisseau se fait toucher par 5 missiles au total, il est éliminé.
 
-## Les auteures 
-Kevin Becquet et Azrou Razane
-## Bibliothèque spéciale
-SFML
+## Installation et usage
 
-Comment l'installer ? Dans votre terminal linux :
+Pour installer ce jeu, il faudra au préalable installer la bibliotèque **SFML** utilisée pour l'affichage graphique et la gestion d'événements clavier:
+```
+sudo apt-get install libsml-dev
+```
+Une fois la bibliothèque installée, il suffira de compiler le programme dans le dossier *Robrawl1/* pour pouvoir lancer le jeu:
+```
+#Compilation
+make
 
-`sudo apt-get install libsml-dev`
+#Lancement
+./Robrawl
+``` 
 
-## Compilation du programme 
+## Jouer 
+ 
 
-Pour lancer notre jeu, rien de plus simple. Ouvrez votre terminal dans le dossier Robrawl et
-lancer les lignes suivantes dans l'ordre :
+Les vaisseaux avance à vitesse constante. Par conséquent chaque joueur a accès à trois actions pour vaincre son adversaire ces actions et les touches correspondantes sont resumés dans ce tableau: 
+|actions|joueur1|joueur2|
+|---|---|---|
+|tourner en sens trigo|Q|J|
+|tourner en sens horaire|D|L|
+|tirer un missile |Z|I|
 
-`make`
 
-`./Robrawl`
 
-Après le make un petit warning s'affichera. Ne vous en souciez pas.
-
-## Plus sur le jeu
-Une map au fond noir avec deux robots et deux obstacles s'affichera.
-Chaque robot correspond à un joueur, dirigé par trois touches. Une pour avancer vers l'arrière,
-une autre vers l'avant et une dernière pour attaquer.
-
-Le robot en haut à gauche : 
-1. q pour tourner dans le sens horaire
-2. d pour tourner dans le sens trigonometrique
-3. s pour l'attaque
-
-Le robot au centre de l'écran :
-1. j pour dans le sens horaire 
-2. l pour tourner dans le sens trigonometrique 
-3. k pour l'attaque 
-
-## Avancement du projet
-
-Suite à un problème de mise en commun des méthode de collisions et de missiles nous avons deux dossiers différents comprenant l'avancée du projet sur ces points respectifs : Robrawl reprenant l'avancée sur la partie collision et Robrawl2 l'avancée de la partie missile.
-
-Pour le moment le dossier Robrawl2 ne permet que d'avancer dans la map. L'affichage des missiles ne se fait pas, bien que ceux-ci sont bien intégrés et change de position comme on peut le voire dans le terminale. La position des obstacles peut parfois être en partie à l'extérieur de la fenêtre.
-
-Le dossier Robrawl permet d'avoir un déplacement dans la fenêtre, sans gestion de missile.
-
-## Organisation
-Kevin s'est occupé des méthodes de déplacement et collisions
-
-Razane des méthodes d'affichage et gestions d'événements
-
-On a principalement communiqué par facebook et partagé nos avancées sur github et discord

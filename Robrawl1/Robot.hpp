@@ -2,9 +2,6 @@
 #define ROBOT
 
 #include <cmath>
-#include <iostream>
-
-#include <SFML/Graphics.hpp>
 
 #include "MovingElt.hpp"
 #include "Terrain.hpp"
@@ -15,8 +12,8 @@ using namespace std;
 
 #define VITESSE_ROTATION M_PI/80
 
-#define H_ROB 25
-#define W_ROB 25
+#define H_ROB 20
+#define W_ROB 20
 
 #define SEUIL_X (W_ROB+W_OBS)
 #define SEUIL_Y (H_ROB+H_OBS)
@@ -24,13 +21,13 @@ using namespace std;
 class Robot : public MovingElt
 {
 	private :
-	int countdown = 0;
+		int cooldown = 0;
+		
 	public :
 
-		Robot();
 		//constructeur classique
 		Robot(Vector2f p, string n, float o, int v,int h, int w) : 
-				MovingElt(p,n,o,v,h,w,1){};
+				MovingElt(p,n,o,v,h,w,1.5){};
 				
 				
 		//Constructeur par copie
@@ -48,9 +45,7 @@ class Robot : public MovingElt
 			im = r.im;
 			return *this;
 		}
-		//les getters
-		int getVie(){return vie;}
-
+		
 		//déplace le robot suivant X et Y
 		void deplace(Terrain& map);
 

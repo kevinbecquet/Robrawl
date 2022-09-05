@@ -7,7 +7,7 @@ Obstacle::Obstacle(Texture* t, Vector2f pos, int h, int w){
 	position.x = pos.x;
 	position.y = pos.y;
 
-	//We set the sprite's texture and position 
+	//chargement de l'image et de sa position 
 	sprite.setTexture(*t);
 	sprite.setPosition(position);
 	sprite.scale(Vector2f(scaleFactor,scaleFactor));

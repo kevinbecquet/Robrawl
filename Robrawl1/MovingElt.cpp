@@ -9,12 +9,11 @@ int MovingElt::getVie(){
 string MovingElt::getNom(){
 	return nom;
 }
+
 Vector2f MovingElt::getPosition(){ 
     return position;
 }
-float MovingElt::getVitesse(){
-    return vitesse;
-}
+
 float MovingElt::getOrientation(){
     return orientation;
 }
@@ -34,23 +33,12 @@ void MovingElt::setVie(int hp){
     vie = hp; 
 }
 
-void MovingElt::setIm(Texture* t)
-		{
-			im.setTexture(*t);
-			im.scale(Vector2f(ScaleFactor,ScaleFactor));
-			
-			 
-		}
+void MovingElt::setIm(Texture* t){
 
-void MovingElt::setImPos()
-		{
-			Vector2f pos;
-			pos.x = position.x ;
-			pos.y = position.y ;
+	im.setTexture(*t);
+	im.scale(Vector2f(ScaleFactor,ScaleFactor));	
+}
 
-			im.setPosition(this->position);
-		}
-void MovingElt::setImPos(Vector2f init_pos)
-{
-    im.setPosition(init_pos);
+void MovingElt::setImPos(){
+	im.setPosition(this->position);
 }

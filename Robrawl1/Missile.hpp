@@ -2,12 +2,9 @@
 #define MISSILE_H
 
 #include <cmath>
-#include <iostream>
 
-#include <SFML/Graphics.hpp>
 #include "MovingElt.hpp"
 #include "Terrain.hpp"
-
 
 class Missile : public MovingElt
 {

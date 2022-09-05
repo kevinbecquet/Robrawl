@@ -2,12 +2,12 @@
 #define OBSTACLE
 
 #include "SFMLManager.hpp"
-#include <time.h>
+
 
 #define scaleFactor 0.25
 
-#define H_OBS 36
-#define W_OBS 24
+#define H_OBS 25
+#define W_OBS 45
 using namespace sf;
 
 

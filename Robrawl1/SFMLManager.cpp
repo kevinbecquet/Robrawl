@@ -6,8 +6,8 @@
 
 
 //Constructeur création d'une fenêtre sfml
-SFMLManager::SFMLManager()
-{
+SFMLManager::SFMLManager(){
+
 	window = new RenderWindow(VideoMode(WIDTH,HEIGHT),"Robrawl");
 	window->setFramerateLimit(60);
 
@@ -15,57 +15,51 @@ SFMLManager::SFMLManager()
 	window->display();
 }
 
-//Déstructeur de l'instance
-SFMLManager::~SFMLManager()
-{
+//Destructeur de l'instance
+SFMLManager::~SFMLManager(){
 	delete window;
 }
 
 //Renvoie de l'attribut fenêtre en pointeur
-RenderWindow*& SFMLManager::getWindow()
-{
+RenderWindow*& SFMLManager::getWindow(){
 	return window;
 }
 
-//fermeture de la fenêtre et gestion des touches clavier
-//Clavier Azerty - les touches considérées : q, s, d et j, k, l
-//q et j : aller à gauche
-//d et l : aller à droite
-//s et k : attaquer
-//Trois par joueurs et pour le moment 2 joueurs
-void SFMLManager::eventManager(Terrain& map)
-{
+// Gestion des touches clavier : execute une action en cas de touche pressée
+//q et j : tourner à gauche
+//d et l : tourner à droite
+//z et i : attaquer 
+void SFMLManager::eventManager(Terrain& map){
 	Event e;
 
 	window->pollEvent(e);
 		
 	//key manager
-	//if(e.type == Event::KeyPressed){
 
-		if(Keyboard::isKeyPressed(Keyboard::Q))
-			map.getElem()[0]->reoriente(-1);
+	if(Keyboard::isKeyPressed(Keyboard::Q))
+		map.getElem()[0]->reoriente(-1);
 
-		if(Keyboard::isKeyPressed(Keyboard::D))
-			map.getElem()[0]->reoriente(1);
-		
-		if(Keyboard::isKeyPressed(Keyboard::Z))
-			map.getElem()[0]->attaque(map);
-
-		if(Keyboard::isKeyPressed(Keyboard::J))
-			map.getElem()[1]->reoriente(-1);
-
-		if(Keyboard::isKeyPressed(Keyboard::L))
-			map.getElem()[1]->reoriente(1);
-
-		if (Keyboard::isKeyPressed(Keyboard::I))
-			map.getElem()[1]->attaque(map);
-	//}
-	if(e.type == Event::Closed || e.key.code == Keyboard::Escape)
-		window->close();
+	if(Keyboard::isKeyPressed(Keyboard::D))
+		map.getElem()[0]->reoriente(1);
 	
+	if(Keyboard::isKeyPressed(Keyboard::Z))
+		map.getElem()[0]->attaque(map);
+
+	if(Keyboard::isKeyPressed(Keyboard::J))
+		map.getElem()[1]->reoriente(-1);
+
+	if(Keyboard::isKeyPressed(Keyboard::L))
+		map.getElem()[1]->reoriente(1);
+
+	if (Keyboard::isKeyPressed(Keyboard::I))
+		map.getElem()[1]->attaque(map);
+	//}
+	if(e.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
+		window->close();	
 }			
 	
 
+// Affichage et rotation de l'image du Robot dans la fenetre de jeu
 void SFMLManager::displayRobot(Robot& rob){
 
 	Sprite robImage = rob.getIm();
@@ -76,10 +70,20 @@ void SFMLManager::displayRobot(Robot& rob){
 	window->draw(robImage);	
 }
 
-void SFMLManager::displayObstacle(Obstacle& obs){	
+// Affichage de l'image de l'Obstacle dans la fenetre de jeu
+void SFMLManager::displayObstacle(Obstacle& obs){
+	
+	RectangleShape rect;
+	rect.setOrigin(obs.getPosition());
+	rect.setFillColor(Color::Black);
+	rect.setSize(Vector2f(obs.getWidth(),obs.getHeight()));
+
+	window->draw(rect);
 	window->draw(obs.getSprite());
 	
 }
+
+// Affichage de l'image du Missile dans la fenetre de jeu
 void SFMLManager::displayMissile(Missile& mis){
 	Sprite misImage = mis.getIm();
 	misImage.setOrigin(mis.getWidth(),mis.getHeight());
@@ -87,4 +91,33 @@ void SFMLManager::displayMissile(Missile& mis){
 	misImage.setRotation(mis.getOrientation()*180/M_PI);
 
 	window->draw(misImage);
+}
+
+
+// Affichage globale du Terrain dans la fenetre de jeu  
+void SFMLManager::displayWindow(Terrain& map){
+	window->clear();	
+
+	// image en arrière-plan
+	Texture backgroundTexture;
+	backgroundTexture.loadFromFile("Image/background.jpeg");
+
+	Sprite background;
+	background.setTexture(backgroundTexture);
+	background.setScale(WIDTH/background.getLocalBounds().width,
+						HEIGHT/background.getLocalBounds().height);
+
+	window->draw(background);
+
+	// affichage des Obstacles
+	for(Obstacle o : map.getObs())
+		o.displayInWindow(*this);
+
+	// affichage des MovingElt
+	for(MovingElt* elt: map.getElem()){
+		elt->displayInWindow(*this);
+		
+	}
+	
+	window->display();
 }
