@@ -1,4 +1,4 @@
-# Robrawl ( version finale)
+# Robrawl ( remake)
 
 Deux vaisseaux spaciaux ennemis poursuivent le même but: anéantir son opposant ! 
 Pour y parvenir, ils pourront lancer des missiles dans le but de se toucher. Si un vaisseau se fait toucher par 5 missiles au total, il est éliminé.
